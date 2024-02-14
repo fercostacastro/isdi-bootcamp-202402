@@ -1,0 +1,149 @@
+@keyframes movement {
+  0% {
+    left: 0px;
+  }
+  25% {
+    left: 10px;
+  }
+  75% {
+    left: 5px;
+  }
+  100% {
+    left: 5px;
+  }
+}
+.pig__head {
+  background-color: rgb(236, 172, 183);
+  width: 143px;
+  height: 150px;
+  position: relative;
+  border-radius: 50%;
+}
+.pig__eye {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  border-radius: 50%;
+}
+.pig__eye--left {
+  top: 28px;
+  left: 30px;
+}
+.pig__eye--right {
+  top: 30px;
+  left: 84px;
+}
+.pig__pupil {
+  background-color: black;
+  width: 7px;
+  height: 5px;
+  position: absolute;
+  top: 1px;
+  left: 11px;
+  border-radius: 50%;
+  animation-duration: 10s;
+  animation-name: movement;
+}
+.pig__ear--left {
+  background-color: rgb(236, 172, 183);
+  width: 20px;
+  height: 40px;
+  position: relative;
+  border-radius: 50%;
+  top: -159px;
+  left: 10px;
+}
+.pig__ear--right {
+  background-color: rgb(236, 172, 183);
+  width: 20px;
+  height: 40px;
+  position: relative;
+  border-radius: 50%;
+  top: -198px;
+  left: 112px;
+}
+.pig__nose {
+  background-color: rgb(221, 129, 144);
+  position: absolute;
+  width: 63px;
+  height: 34px;
+  top: 82px;
+  left: 48px;
+  border-radius: 18px;
+}
+.pig__body {
+  background-color: rgb(236, 172, 183);
+  width: 305px;
+  height: 155px;
+  position: relative;
+  border-radius: 50%;
+  top: -92px;
+}
+.pig__leg1 {
+  background-color: rgb(236, 172, 183);
+  width: 52px;
+  height: 152px;
+  position: relative;
+  border-radius: 50%;
+  top: -184px;
+}
+.pig__leg2 {
+  background-color: rgb(236, 172, 183);
+  width: 52px;
+  height: 152px;
+  position: relative;
+  border-radius: 50%;
+  top: -330px;
+  right: -85px;
+}
+.pig__leg3 {
+  background-color: rgb(236, 172, 183);
+  width: 52px;
+  height: 152px;
+  position: relative;
+  border-radius: 50%;
+  top: -478px;
+  right: -165px;
+}
+.pig__leg4 {
+  background-color: rgb(236, 172, 183);
+  width: 52px;
+  height: 152px;
+  position: relative;
+  border-radius: 50%;
+  top: -630px;
+  right: -234px;
+}
+.pig__tale {
+  background-color: rgb(236, 172, 183);
+  width: 16px;
+  height: 57px;
+  position: absolute;
+  border-radius: 50%;
+  top: 142px;
+  left: 292px;
+}
+
+.whole__nose--left {
+  position: relative;
+  width: 8px;
+  height: 12px;
+  background-color: black;
+  z-index: 1;
+  top: 13px;
+  left: 18px;
+  border-radius: 12px;
+}
+.whole__nose--right {
+  position: relative;
+  width: 8px;
+  height: 12px;
+  background-color: black;
+  top: 1px;
+  left: 37px;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,44 @@
+@import utils
+
+.building
+    display: flex
+    justify-content: center
+    flex-direction: row
+    align-items: center
+
+    &__floors
+        background-image: url("images/brick.jpg")
+        background-size: contain
+        display: flex
+        flex-direction: column
+        background-color: #5e1b37
+        @include size(477px, 752px)
+        justify-content: space-around
+        border-radius: 10px
+        border: 1px solid #5e1b37
+
+    &__floor
+        display: flex
+        flex-direction: row
+        justify-content: space-around
+
+        .floor__window
+            background-image: url("images/window.jpg")
+            display: flex
+            flex-direction: row
+            background-color: #664863
+            @include size(51px, 46px)
+            border: 2px solid white
+            align-items: center
+            border-radius: 10px
+
+.main__entrance
+    background-image: url("images/main-entrance.jpg")
+    background-size: cover
+    display: flex
+    justify-content: center
+    align-items: center
+    @include size(176px, 153px)
+    background-color: #d5a0c9
+    border-radius: 5px
+    border: 2px solid white

@@ -1,0 +1,49 @@
+.building {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+.building__floors {
+  background-image: url("images/brick.jpg");
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  background-color: #5e1b37;
+  width: 477px;
+  height: 752px;
+  justify-content: space-around;
+  border-radius: 10px;
+  border: 1px solid #5e1b37;
+}
+.building__floor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.building__floor .floor__window {
+  background-image: url("images/window.jpg");
+  display: flex;
+  flex-direction: row;
+  background-color: #664863;
+  width: 51px;
+  height: 46px;
+  border: 2px solid white;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.main__entrance {
+  background-image: url("images/main-entrance.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 176px;
+  height: 153px;
+  background-color: #d5a0c9;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+/*# sourceMappingURL=style.css.map */

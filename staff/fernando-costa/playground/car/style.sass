@@ -1,0 +1,51 @@
+@import utils
+
+.car
+  &__base
+    position: relative
+    @import size(500px, 130px)
+    background-color: rgb(131, 49, 49)
+    top: 240px
+    border-radius: 53px
+
+  &__top
+    position: absolute
+    @import size(355px, 168px)
+    background-color: rgb(171, 154, 154)
+    @import location(-168px, 65px)
+    border-radius: 5px 5px 0px 0px
+
+  &__wheel--left
+    position: relative
+    @import size(107px, 92px)
+    background-color: black
+    border-radius: 50%
+    @import location(194px, 69px)
+
+  &__wheel--right
+    position: relative
+    @import size(101px, 92px)
+    background-color: black
+    border-radius: 50%
+    @import location(107px, 336px)
+
+  &__window--left
+    position: relative
+    @import size(100px, 132px)
+    background-color: goldenrod
+    border-radius: 20px
+    @import location(16px, 65px)
+
+  &__window--right
+    position: relative
+    @import size(100px, 132px)
+    background-color: goldenrod
+    border-radius: 20px
+    @import location(-117px, 200px)
+
+  &__light
+    position: absolute
+    @import size(21px, 37px)
+    background-color: rgb(233, 242, 156)
+    border-radius: 50%
+    @import location(19px, 5px)

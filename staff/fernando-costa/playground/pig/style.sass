@@ -1,0 +1,125 @@
+@import utils
+
+@keyframes movement
+  0%
+    left: 0px
+
+  25%
+    left: 25px
+
+  75%
+    left: 25px
+
+  100%
+    left: 25px
+
+.pig
+  &__head
+    background-color: rgb(236, 172, 183)
+    @include size(143px, 150px)
+    position: relative
+    border-radius: 50%
+
+  &__eye
+    background-color: white
+    @include size(30px, 30px)
+    position: absolute
+    border-radius: 50%
+
+  &__eye--left
+    @include location(28px, 30px)
+
+  &__eye--right
+    @include location(30px, 84px)
+
+  &__pupil
+    background-color: black
+    @include size(7px, 5px)
+    position: absolute
+    @include location(1px, 11px)
+    border-radius: 50%
+    animation-duration: 10s
+    animation-name: movement
+
+  &__ear--left
+    background-color: rgb(236, 172, 183)
+    @include size(20px, 40px)
+    position: relative
+    border-radius: 50%
+    @include location(-159px, 10px)
+
+  &__ear--right
+    background-color: rgb(236, 172, 183)
+    @include size(20px, 40px)
+    position: relative
+    border-radius: 50%
+    @include location(-198px, 112px)
+
+  &__nose
+    background-color: rgb(221, 129, 144)
+    position: absolute
+    @include size(63px, 34px)
+    @include location(82px, 48px)
+    border-radius: 18px
+
+  &__body
+    background-color: rgb(236, 172, 183)
+    @include size(305px, 155px)
+    position: relative
+    border-radius: 50%
+    top: -92px
+
+  &__leg1
+    background-color: rgb(236, 172, 183)
+    @include size(52px, 152px)
+    position: relative
+    border-radius: 50%
+    top: -184px
+
+  &__leg2
+    background-color: rgb(236, 172, 183)
+    @include size(52px, 152px)
+    position: relative
+    border-radius: 50%
+    top: -330px
+    right: -85px
+
+  &__leg3
+    background-color: rgb(236, 172, 183)
+    @include size(52px, 152px)
+    position: relative
+    border-radius: 50%
+    top: -478px
+    right: -165px
+
+  &__leg4
+    background-color: rgb(236, 172, 183)
+    @include size(52px, 152px)
+    position: relative
+    border-radius: 50%
+    top: -630px
+    right: -234px
+
+  &__tale
+    background-color: rgb(236, 172, 183)
+    @include size(16px, 57px)
+    position: absolute
+    border-radius: 50%
+    @include location(142px, 292px)
+
+.whole
+  &__nose--left
+    position: relative
+    @include size(8px, 12px)
+    background-color: black
+    z-index: 1
+    @include location(13px, 18px)
+    border-radius: 12px
+
+  &__nose--right
+    position: relative
+    @include size(8px, 12px)
+    background-color: black
+    @include location(1px, 37px)
+    z-index: 1
+    border-radius: 12px
