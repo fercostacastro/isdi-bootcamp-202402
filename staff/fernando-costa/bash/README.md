@@ -3,53 +3,52 @@
 Command-line interface commands typical in BASH.
 
 ## pwd
-pwd= path work directory => qué carpeta estamos
+pwd= path work directory => which folder we are now
 ```bash
 $ pwd
 ```
 
 ## ls
-todas las carpetas
+all the folders
 ```bash
 $ ls
 ```
 
 ## ls -l
-todas las carpetas pero más info
-```bssh
+all folders we have, but with more info
+```bash
 $ ls -l
 ```
 
 ## touch    
-se crea un archivo ejemplo touch hola.mundo
+it creats a file i.e. hello.world
 ```bash
 $ touch
 ```
 
 ## ls -a
-archivos ocultos
+hidden folders
 ```bash
 $ ls -a
 ```
 
 ## mkdir (make directory)
-crear un directorio
+it creats a new directory
 ```bash
 $ mkdir
 ```
 
 ## cd
-meterte en un directorio
+it changes a directory
 ```bash
 $ cd
 ```
 
 ## mv
-mover => ej.  $ mv hello.world hola.mundo
+move  i.e $ mv hello.world hola.mundo
 ```bash
 $ mv
 ```
-
 
 ## clear
 ```bash
@@ -62,11 +61,53 @@ $ kill
 ```
 
 ## tree 
-ver el camino de los archivos
+see the path fo the files
 ```bash
 ```
 ## rm -rf 
-remover todas laas carpetas y su contenido
+remove all folders and its contents
 ```bash
 $ rm -rf workspace/hello world
 ```
+
+# git branch -D
+erase branch
+```bash
+```
+
+## git log
+list of all commits we have
+```bash
+```
+
+# git status
+```bash
+```
+
+# git branch
+see which branch we are now
+```bash
+```
+
+# git checkout feature/....
+out of the current project and enter to new one i.e. feature/playground
+```bash
+```
+
+## git add staff/fernando-costa/...
+add the folder i.e. git add staff/fernando-costa/playground
+```bash
+```
+
+## git commit -m 
+save the changes i.e. git commit -m '... playground code #122'
+```bash
+```
+
+## git push
+upload the file
+```bash
+```
+
+## git push (again if it fails)
+i.e. git push -u origin feature/playground
