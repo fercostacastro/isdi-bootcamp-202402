@@ -1,5 +1,5 @@
 var ship = document.getElementById("ship");
-var alien = document.getElementById("alien");
+var aliens = document.getElementById("aliens");
 
 var x = 46;
 var y = 90;
@@ -19,11 +19,11 @@ document.onkeydown = function (event) {
   ship.style.top = y + "vh";
 
   var shipRect = ship.getBoundingClientRect();
-  var alienRect = alien.getBoundingClientRect();
+  var aliensRect = aliens.getBoundingClientRect();
 
-  console.log(shipRect, alienRect);
+  console.log(shipRect, aliensRect);
 
-  if (shipRect.x + shipRect.width > alienRect.x)
+  if (shipRect.x + shipRect.width > aliensRect.x)
     console.log("collision detected");
 
 };
