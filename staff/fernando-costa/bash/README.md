@@ -1,5 +1,4 @@
 # bash
-
 Command-line interface commands typical in BASH.
 
 ## pwd
@@ -111,3 +110,10 @@ upload the file
 
 ## git push (again if it fails)
 i.e. git push -u origin feature/playground
+```bash
+```
+
+# git log --all --decorate --oneline --graph
+see we have done so far
+```bash
+```
