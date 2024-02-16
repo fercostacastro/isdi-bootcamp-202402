@@ -38,9 +38,9 @@ $ mkdir
 ```
 
 ## cd
-it changes a directory
+it changes a directory i.e. cd playground  / cd space-invaders
 ```bash
-$ cd
+$ cd 
 ```
 
 ## mv
