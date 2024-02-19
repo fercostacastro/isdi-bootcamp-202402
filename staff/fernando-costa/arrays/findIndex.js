@@ -1,6 +1,6 @@
 delete Array.prototype.findIndex
 
-function findindex(array, callback) {
+function findIndex(array, callback) {
     for (var i = 0; i < array.length; i++) {
         var firstElement = array[i];
 

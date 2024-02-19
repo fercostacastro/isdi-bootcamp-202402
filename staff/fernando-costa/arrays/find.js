@@ -14,7 +14,7 @@ console.log('CASE 1')
 
 var nums = [10, 20, 30, 40, 50];
 
-var result = findIndex(nums, function (num) {
+var result = find(function (num) {
     return num === nums[1];
 });
 
