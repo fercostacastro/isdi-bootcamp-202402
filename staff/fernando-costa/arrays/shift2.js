@@ -34,7 +34,7 @@ console.log(firstElement)
 
 // CASE 2
 
-var nums = ['elephant', 'sheep', 'cow', 'dog']
+var animals = ['elephant', 'sheep', 'cow', 'dog']
 
 var firstElement = shift(nums)
 // Array { 0: elephant, 1: sheep, 2: cow, 3: dog, length: 4 }

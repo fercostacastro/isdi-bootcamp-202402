@@ -16,9 +16,9 @@ function map(array, callback) {
 
 console.log('CASE 1')
 
-var nums = [1, 4, 9, 16]
+var numsCase1Map = [1, 4, 9, 16]
 
-var numsX2 = map(nums, function (x) { return x * 2 })
+var numsX2 = map(numsCase1Map, function (x) { return x * 2 })
 // array // Array { 0: 1, 1: 4, 2: 9, 3: 16, length: 4 }
 // callback // function(x) { return x * 2 }
 
@@ -45,7 +45,7 @@ var numsX2 = map(nums, function (x) { return x * 2 })
 console.log(numsX2)
 // [2, 8, 18, 32]
 
-console.log(nums)
+console.log(numsCase1Map)
 // [1, 4, 9, 18]
 
 

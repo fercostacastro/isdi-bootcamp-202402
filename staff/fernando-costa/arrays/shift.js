@@ -1,14 +1,14 @@
 delete Array.prototype.shift
 
 function shift(array) {
-    var first = array[0]
+    let first = array[0]
 
     // extraction indexes as reference
     //for (var i = 1; i < array.length; i++)
     //array[i - 1] = array[i]
 
     // machaking indexes as reference
-    for (var i = 0; i < array.length - 1; i++)
+    for (let i = 0; i < array.length - 1; i++)
         array[i] = array[i + 1]
 
     array.length--
@@ -18,9 +18,9 @@ function shift(array) {
 
 // CASE 1
 
-var nums = [10, 20, 30]
+let nums = [10, 20, 30]
 
-var firstElement = shift(nums)
+let firstElement = shift(nums)
 // Array { 0: 10, 1: 20, 2: 30, length: 3 }
 // Array { 0: 10, 1: 20, 2: 30, length: 3 } -> var first = 10
 // Array { 0: 20, 1: 20, 2: 30, length: 3 }
@@ -30,17 +30,17 @@ var firstElement = shift(nums)
 // Array { 0: 20, 1: 30, length: 2 }
 
 console.log(nums)
-// Expected output: Array [20, 30]
+// [20, 30]
 
 console.log(firstElement)
-// Expected output: 10
+// 10
 
 
 // CASE 2
 
-var animals = ['elephant', 'sheep', 'cow', 'dog']
+let animals = ['elephant', 'sheep', 'cow', 'dog']
 
-var firstElement = shift(animals)
+firstElement = shift(animals)
 // Array { 0: elephant, 1: sheep, 2: cow, 3: dog, length: 4 }
 // var first = array[0] // elephant
 // array[0] = array[1] // Array { 0: sheep, 1: sheep, 2: cow, 3: dog, length: 4 }
@@ -58,9 +58,9 @@ console.log(firstElement)
 
 // CASE 3
 
-var cocktails = ['margharita', 'sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
+let cocktails = ['margharita', 'sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
 
-var firstElement = shift(cocktails)
+firstElement = shift(cocktails)
 // array // Array { 0: 'margharita', 1: 'sex on the beach', 2: 'bloody mary', 3: 'gintonic', 4: 'mojito', 5: 'daikiri', length: 6 }
 // var first = 'margharita'
 // array[0] = array[1] // Array { 0: 'sex on the beach', 1: 'sex on the beach', 2: 'bloody mary', 3: 'gintonic', 4: 'mojito', 5: 'daikiri', length: 6 }
@@ -80,9 +80,9 @@ console.log(firstElement)
 
 // CASE 4
 
-var nums = [10, 20]
+let numsCase4 = [10, 20]
 
-var firstElement = shift(nums)
+firstElement = shift(nums)
 // array // Array { 0: 10, 1: 20, length: 2 }
 // var first = 10
 // Array { 0: 20, 1: 20, length: 2 }
@@ -98,9 +98,9 @@ console.log(firstElement)
 
 // CASE 5
 
-var nums = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+let numsCase5 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
 
-var firstElement = shift(nums)
+firstElement = shift(nums)
 
 console.log(firstElement)
 // 100

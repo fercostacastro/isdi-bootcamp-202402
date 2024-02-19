@@ -13,10 +13,9 @@ function shift(array) {
 
 // CASE 1
 
-var nums = [10, 20, 30]
+var numsCase1 = [10, 20, 30]
 
-
-var firstElement = shift(nums)
+var firstElementCase1 = shift(numsCase1)
 // Array { 0: 10, 1: 20, 2: 30, length: 3 }
 // Array { 0: 10, 1: 20, 2: 30, length: 3 } -> var first = 10
 // Array { 0: 20, 1: 20, 2: 30, length: 3 }
@@ -25,8 +24,8 @@ var firstElement = shift(nums)
 // return first
 // Array { 0: 20, 1: 30, length: 2 }
 
-console.log(nums)
+console.log(numsCase1)
 // Expected output: Array [20, 30]
 
-console.log(firstElement)
+console.log(firstElementCase1)
 // Expected output: 10
