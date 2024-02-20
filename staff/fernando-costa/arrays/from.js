@@ -1,20 +1,27 @@
-delete Array.from
+delete Array.prototype.from
 
-function from(array){
+function from(array, element) {
 
-    var result = []
-    
-    for (var i = 0; i < array.length; i++) {
-        var elements = array[i]
+    let newArray = []
 
-        return array
+    if (element === undefined) {
+        for (let i = 0; i < array.length; i++) {
+            newArray[i] = array[i]
+        }
+        return newArray
+    } else {
+        for (let i = 0; i < array.length; i++) {
+            newArray[i] = element(array[i])
+        }
+        return newArray
     }
 }
 
 
 console.log('CASE 1')
 
-var name = ['Fernando']
+let student = 'Fernando'
+let result = from(student)
 
-console.log(name)
+console.log(result)
 // ['F', 'e' 'r' 'n' 'a' 'n' 'd' 'o']
