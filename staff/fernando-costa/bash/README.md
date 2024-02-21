@@ -22,7 +22,7 @@ $ ls -l
 ## touch    
 it creats a file i.e. hello.world
 ```bash
-$ touch
+$ touch hello.world
 ```
 
 ## ls -a
@@ -32,9 +32,9 @@ $ ls -a
 ```
 
 ## mkdir (make directory)
-it creats a new directory
+it creats a new directory. i.e. hello.world
 ```bash
-$ mkdir
+$ mkdir hello.world
 ```
 
 ## cd
