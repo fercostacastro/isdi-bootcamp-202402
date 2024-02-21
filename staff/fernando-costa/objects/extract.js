@@ -6,8 +6,22 @@
  * 
  * @throws {TypeError} When object is not an object, or when index is not a number.
  */
+
 function extract(object, callback) {
-    // TODO
+    var newObject = {}
+
+    if (!(object instanceof Object)) {
+        throw new TypeError(object + ' is not an Object')
+    }
+
+    for (let i = 0; i < object.length; i++) {
+        if (callback(object[i]) === true) {
+            newObject = object[i]
+            delete object[i]
+        }
+        object.length -= 1
+        return newObject
+    }
 }
 
 console.log('CASE 1: extract user pepito form users')
@@ -38,3 +52,29 @@ console.log(users)
     length: 4
 }
 */
+
+try {
+    extract(10)
+} catch (error) {
+    console.log(error)
+    // TypeError: 10 is not an Object
+}
+
+try {
+    extract(user)
+} catch (error) {
+    console.log(error)
+    // TypeError: 
+    // 0: { name: 'Wendy', age: 19 },
+    // 1: { name: 'Peter', age: 20 },
+    // 2: { name: 'Campa', age: 30 },
+    // 3: { name: 'James', age: 40 },
+    // length: 4
+}
+
+try {
+    extract(false)
+} catch (error) {
+    console.log(error)
+    // TypeError: false is not an Object
+}

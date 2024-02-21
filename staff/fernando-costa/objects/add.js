@@ -6,12 +6,20 @@
  * 
  * @throws {TypeError} When object is not an object.
  */
+
 function add(object, value) {
-    object[object.length] = value
+    if (arguments.length === 1)  {
+        return object.length
 
-    object.length++
+    } else if (!(object instanceof Object)) {
+        throw new TypeError(object + ' is not an Object')
 
-    return object.length
+    } else {
+        object[object.length] = value
+        object.length++
+    
+        return object.length
+    }
 }
 
 console.log('CASE 1: add violet in colors')
@@ -38,3 +46,24 @@ console.log(colors)
     length: 4
 }
 */
+
+try {
+    add(23, 23)
+} catch (error) {
+    console.log(error)
+    // TypeError: 23 is not an Object
+}
+
+try {
+    add(true, 'string')
+} catch (error) {
+    console.log(error)
+    // TypeError: true is not an Object
+}
+
+try {
+    add('series', 'movies')
+} catch (error) {
+    console.log(error)
+    // TypeError: string is not an Object
+}
