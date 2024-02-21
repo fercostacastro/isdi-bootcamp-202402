@@ -2,20 +2,18 @@ delete Array.find
 
 function find(array, callback) {
     for (var i = 0; i < array.length; i++) {
-        var firstElement = array[i];
 
-        if (callback(firstElement)) {
-            return firstElement;
-        }
+        if (callback(array[i]))
+            return array[i];
+        
     }
+    return undefined
 }
+
 
 console.log('CASE 1')
 
-var nums = [10, 20, 30, 40, 50];
+var nums = [10, 20, 30, 40, 50]
+var result = find(nums, (element) => element > 10)
 
-var result = find(function (num) {
-    return num === nums[1];
-});
-
-console.log(nums[1]);
+console.log(result)

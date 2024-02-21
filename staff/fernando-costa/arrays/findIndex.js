@@ -2,22 +2,26 @@ delete Array.prototype.findIndex
 
 function findIndex(array, callback) {
     for (var i = 0; i < array.length; i++) {
-        var firstElement = array[i];
 
-        if (callback(firstElement)) {
+        if (callback(array[i]))
             return i;
-        }
+        
     }
+    return undefined
 }
 
 
 console.log('CASE 1')
 
-var nums = [196, 202, 3014, 401, 55]
+var nums = [10, 20, 30, 40, 50]
+var result = findIndex(nums, (element) => element > 40)
 
-function findIndex(element, index, array) {
-    return element > 202
-}
+console.log(result)
 
-console.log(nums.findIndex(findIndex))
-// 3
+
+console.log('CASE 2')
+
+var nums = [9, 25, 30, 10, 54]
+var result = findIndex(nums, (element) => element > 10)
+
+console.log(result)
