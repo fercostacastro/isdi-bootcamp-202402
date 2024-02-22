@@ -26,10 +26,10 @@ var firstElement = shift(nums)
 // Array { 0: 20, 1: 30, length: 2 }
 
 console.log(nums)
-// Expected output: Array [20, 30]
+// [20, 30]
 
 console.log(firstElement)
-// Expected output: 10
+// 10
 
 
 // CASE 2
