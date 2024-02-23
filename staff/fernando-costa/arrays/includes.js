@@ -14,12 +14,12 @@ function includes(array, value) {
 console.log('CASE 1')
 var nums = [100, 200, 300, 400, 500]
 var result = includes(nums, 600)
-console.log(result)
+console.assert(result === false)
 // false
 
 
 console.log('CASE 2')
 var animals = ['pigs', 'goats', 'sheep', 'cows']
 var result = includes(animals, 'sheep')
-console.log(result)
+console.assert(result === true)
 // true

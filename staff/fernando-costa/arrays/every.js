@@ -10,19 +10,19 @@ function every(array, callback) {
 }
 
 
-// CASE 1
+console.log('CASE 1')
 
 var numsCase1Every = [1, 30, 39, 29, 10, 13]
 var result1 = every(numsCase1Every, function (x) {return  x < 40 })
 
-console.log(result1)
+console.assert(result1 === true)
 // true
 
 
-// CASE 2
+console.log('CASE 2')
 
 var numsCase2Every = [2, 30, 41, 39, 50, 14]
 var result2 = every(numsCase2Every, function (x) {return x < 40 })
 
-console.log(result2)
+console.assert(result2 === false)
 // false

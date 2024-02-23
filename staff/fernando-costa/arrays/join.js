@@ -5,7 +5,6 @@ function join(array, separator) {
     var resultString = ''
 
     if (separator === undefined) {
-
         separator = ','
 
         for (var i = 0; i < array.length; i++) {
@@ -29,24 +28,31 @@ function join(array, separator) {
                 resultString = resultString + array[i] + separator
             }
         }
-
     }
 
     return resultString
 }
 
 
+console.log('CASE 1')
+
 var elements = ['Fire', 'Air', 'Water']
 
 var result = join(elements)
 
-console.log(result)
-// "Fire,Air,Water"
+console.assert(result === 'Fire,Air,Water')
+// 'Fire,Air,Water'
+
+
+console.log('CASE 2')
 
 var result2 = join(elements, ' ')
-console.log(result2);
-// "Fire Air Water"
+console.assert(result2 === 'Fire Air Water')
+// 'Fire Air Water'
+
+
+console.log('CASE 3')
 
 var result3 = join(elements, '-')
-console.log(result3);
-// "Fire-Air-Water"
+console.assert(result3 === 'Fire-Air-Water')
+// 'Fire-Air-Water'
