@@ -1,4 +1,4 @@
-delete Array.prototype.indexOf;
+delete Array.prototype.indexOf
 
 function indexOf(array, searchElement) {
   debugger;

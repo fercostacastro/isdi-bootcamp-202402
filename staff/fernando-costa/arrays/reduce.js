@@ -8,7 +8,6 @@ function reduce(array, callback, accum) {
 
         i = 1
     }
-
     for (; i < array.length; i++) {
         var elem = array[i]
 
@@ -43,9 +42,9 @@ function reduce(array, callback, accum) {
     return accum
 }
 */
-
 console.log(total)
 // 385.1
+
 
 console.log('CASE 2')
 
@@ -55,7 +54,6 @@ var cart = [
     { what: 'shorts', price: 20.15, qty: 4, brand: 'hilfigher' },
     { what: 'bag', price: 200.05, qty: 1, brand: 'dolce gabbana' }
 ]
-
 
 var itemsQty = reduce(cart, function (totalQty, item) {
     return totalQty + item.qty
@@ -81,6 +79,7 @@ var total = reduce(nums, function (sum, num) {
 
 console.log(total)
 //280
+
 
 console.log('CASE 4')
 
