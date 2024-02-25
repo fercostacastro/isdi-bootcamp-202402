@@ -16,7 +16,7 @@ function shift(array) {
     return first
 }
 
-// CASE 1
+console.log('CASE 1')
 
 let nums = [10, 20, 30]
 
@@ -29,14 +29,17 @@ let firstElement = shift(nums)
 // return first
 // { 0: 20, 1: 30, length: 2 }
 
-console.log(nums)
+console.assert(nums)
 // [20, 30]
+console.assert(nums[0] === 20, 20)
+console.assert(nums[1] === 30, 30)
+console.assert(nums.length === 2, 2)
 
-console.log(firstElement)
+console.assert(firstElement === 10, 10)
 // 10
 
 
-// CASE 2
+console.log('CASE 2')
 
 let animals = ['elephant', 'sheep', 'cow', 'dog']
 
@@ -49,14 +52,18 @@ firstElement = shift(animals)
 // array.length-- // Array { 0: sheep, 1: cow, 2: dog, length: 3 }
 // return first
 
-console.log(animals)
+console.assert(animals)
 // ['sheep', 'cow', 'dog']
+console.assert(animals[0] === 'sheep', 'sheep')
+console.assert(animals[1] === 'cow', 'cow')
+console.assert(animals[2] === 'dog', 'dog')
+console.assert(animals.length === 3, 3)
 
-console.log(firstElement)
+console.assert(firstElement === 'elephant', 'elephant')
 // 'elephant'
 
 
-// CASE 3
+console.log('CASE 3')
 
 let cocktails = ['margharita', 'sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
 
@@ -71,38 +78,68 @@ firstElement = shift(cocktails)
 // array.length-- // Array { 0: 'sex on the beach', 1: 'bloody mary', 2: 'gintonic', 3: 'mojito', 4: 'daikiri', length: 5 }
 // return first
 
-console.log(cocktails)
+console.assert(cocktails)
 // ['sex on the beach', 'bloody mary', 'gintonic', 'mojito', 'daikiri']
+console.assert(cocktails[0] === 'sex on the beach', 'sex on the beach')
+console.assert(cocktails[1] === 'bloody mary', 'bloody mary')
+console.assert(cocktails[2] === 'gintonic', 'gintonic')
+console.assert(cocktails[3] === 'mojito', 'mojito')
+console.assert(cocktails[4] === 'daikiri', 'daikiri')
+console.assert(cocktails.length === 5, 5)
 
-console.log(firstElement)
+
+console.assert(firstElement === 'margharita', 'margharita')
 // 'margharita'
 
 
-// CASE 4
+console.log('CASE 4')
 
 let numsCase4 = [10, 20]
 
-firstElement = shift(nums)
+firstElement = shift(numsCase4)
 // array // Array { 0: 10, 1: 20, length: 2 }
 // var first = 10
 // Array { 0: 20, 1: 20, length: 2 }
 // array.length-- // Array {  0: 20, length: 1 }
 // return first
 
-console.log(nums)
+console.assert(numsCase4)
 // [20]
+console.assert(numsCase4[0] === 20, 20)
+console.assert(numsCase4.length === 1, 1)
 
-console.log(firstElement)
+console.assert(firstElement === 10)
 // 10
 
 
-// CASE 5
+console.log('CASE 5')
 
 let numsCase5 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
 
-firstElement = shift(nums)
+firstElement = shift(numsCase5)
 
-console.log(firstElement)
+console.assert(firstElement === 100, 100)
 // 100
-console.log(nums)
+
+console.assert(numsCase5)
 // [200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+console.assert(numsCase5[0] === 200, 200)
+console.assert(numsCase5[1] === 300, 300)
+console.assert(numsCase5[2] === 400, 400)
+console.assert(numsCase5[3] === 500, 500)
+console.assert(numsCase5[4] === 600, 600)
+console.assert(numsCase5[5] === 700, 700)
+console.assert(numsCase5[6] === 800, 800)
+console.assert(numsCase5[7] === 900, 900)
+console.assert(numsCase5[8] === 1000, 1000)
+console.assert(numsCase5[9] === 1100, 1100)
+console.assert(numsCase5[10] === 1200, 1200)
+console.assert(numsCase5[11] === 1300, 1300)
+console.assert(numsCase5[12] === 1400, 1400)
+console.assert(numsCase5[13] === 1500, 1500)
+console.assert(numsCase5[14] === 1600, 1600)
+console.assert(numsCase5[15] === 1700, 1700)
+console.assert(numsCase5[16] === 1800, 1800)
+console.assert(numsCase5[17] === 1900, 1900)
+console.assert(numsCase5[18] === 2000, 2000)
+console.assert(numsCase5.length === 19, 19)

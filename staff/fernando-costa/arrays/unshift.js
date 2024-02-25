@@ -18,12 +18,16 @@ function unshift(array) {
     return array.length
 }
 
-// CASE 1
-var nums = [1, 2, 3];
-var result = unshift(nums, 4, 5)
+console.log('CASE 1')
 
-console.log(nums)
+var numsCase1Unshift = [1, 2, 3];
+var result = unshift(numsCase1Unshift, 4, 5)
+
+console.assert(numsCase1Unshift)
 // [4, 5, 1, 2, 3]
-
-console.log(result)
-// 5
+console.assert(numsCase1Unshift[0] === 4, 4)
+console.assert(numsCase1Unshift[1] === 5, 5)
+console.assert(numsCase1Unshift[2] === 1, 1)
+console.assert(numsCase1Unshift[3] === 2, 2)
+console.assert(numsCase1Unshift[4] === 3, 3)
+console.assert(numsCase1Unshift.length === 5, 5)

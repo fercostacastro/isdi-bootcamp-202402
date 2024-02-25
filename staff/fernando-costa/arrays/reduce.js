@@ -78,7 +78,7 @@ var total = reduce(nums, function (sum, num) {
 })
 
 console.log(total)
-//280
+// 280
 
 
 console.log('CASE 4')
@@ -90,4 +90,4 @@ var total = reduce(nums, function (sum, num) {
 }, 1)
 
 console.log(total)
-//281
+// 281
