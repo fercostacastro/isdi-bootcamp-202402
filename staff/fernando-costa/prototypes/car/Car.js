@@ -37,9 +37,9 @@ Car.prototype.changeGear = function (gear) {
     this.gear = gear
 
     if (typeof gear !== 'number')
-        throw new TypeError(gear + ' is not a number')
+        throw new RangeError(gear + ' is not a number')
     else if (gear < 0 || gear > 4) {
-        throw new TypeError(gear + ' is out of range')
+        throw new RangeError(gear + ' is out of range')
     }
 }
 
