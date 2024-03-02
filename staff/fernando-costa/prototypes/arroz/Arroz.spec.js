@@ -98,7 +98,7 @@ matcha.describe('Arroz', function () {
 
     matcha.describe('> shift', function () {
         matcha.it('should remove the first element', function () {
-            var a = new Arroz (10, 20, 30, 40)
+            var a = new Arroz(10, 20, 30, 40)
 
             matcha.expect(!!a.shift).toBe(true)
 
@@ -110,6 +110,60 @@ matcha.describe('Arroz', function () {
             matcha.expect(a[2]).toBe(30)
             matcha.expect(a[3]).toBe(40)
             matcha.expect(first).toBe(10)
+        })
+    })
+
+    matcha.describe('> unshift', function () {
+        matcha.it('should place an element to the beginning', function () {
+            var a = new Arroz(10, 20, 30)
+
+            matcha.expect(!!a.unshift).toBe(true)
+
+            var value = a.unshift(40, 50)
+
+            matcha.expect(a.length).toBe(5)
+            matcha.expect(a[0]).toBe(40)
+            matcha.expect(a[1]).toBe(50)
+            matcha.expect(a[2]).toBe(10)
+            matcha.expect(a[3]).toBe(20)
+            matcha.expect(a[4]).toBe(30)
+            matcha.expect(value).toBe(5)
+        })
+    })
+
+    matcha.describe('> indexOf', function () {
+        matcha.it('shuold return the first index found', function () {
+            var a = new Arroz(10, 20, 30, 40)
+
+            matcha.expect(!!a.indexOf).toBe(true)
+
+            var searchElement = a.indexOf(4)
+
+            matcha.expect(a.length).toBe(4)
+            matcha.expect(a[0]).toBe(10)
+            matcha.expect(a[1]).toBe(20)
+            matcha.expect(a[2]).toBe(30)
+            matcha.expect(a[3]).toBe(40)
+            matcha.expect(searchElement).toBe(-1)
+
+        })
+    })
+
+    matcha.describe('> lastIndexOf', function () {
+        matcha.it('shuold return the last index found', function () {
+            var a = new Arroz(10, 20, 30, 40)
+
+            matcha.expect(!!a.lastIndexOf).toBe(true)
+
+            var searchElement = a.lastIndexOf(3)
+
+            matcha.expect(a.length).toBe(4)
+            matcha.expect(a[0]).toBe(10)
+            matcha.expect(a[1]).toBe(20)
+            matcha.expect(a[2]).toBe(30)
+            matcha.expect(a[3]).toBe(40)
+            matcha.expect(searchElement).toBe(40)
+
         })
     })
 })

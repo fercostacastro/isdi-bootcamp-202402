@@ -73,4 +73,44 @@ Arroz.prototype.shift = function () {
     return first
 }
 
+Arroz.prototype.unshift = function () {
+    var array = this
+    var argsLength = arguments.length
+
+    for (var i = this.length - 1; i >= 0; i--) {
+        this[i + argsLength] = array[i]
+    }
+
+    for (var j = 0; j < argsLength; j++) {
+        this[j] = arguments[j]
+    }
+
+    return array.length + argsLength
+}
+
+Arroz.prototype.indexOf = function () {
+    var searchElement
+
+    for (var i = 0; i < this.length; i++) {
+
+        if (this[i] === searchElement) {
+            return i
+        }
+    }
+    return -1
+}
+
+Arroz.prototype.lastIndexOf = function () {
+    var searchElement
+
+    for (var i = this.length - 1; i >= 0; i--) {
+
+        if (this[i] === searchElement) {
+            return i
+        }
+    }
+    return -1
+}
+
+
 module.exports = Arroz
