@@ -183,4 +183,21 @@ matcha.describe('Arroz', function () {
             matcha.expect(index).toBe()
         })
     })
+
+    matcha.describe('> includes', function () {
+        matcha.it('should check if the value is included in the array', function () {
+            var a = new Arroz(10, 20, 30, 40)
+
+            matcha.expect(!!a.includes).toBe(true)
+
+            var value = a.includes(10)
+
+            matcha.expect(a.length).toBe(4)
+            matcha.expect(a[0]).toBe(10)
+            matcha.expect(a[1]).toBe(20)
+            matcha.expect(a[2]).toBe(30)
+            matcha.expect(a[3]).toBe(40)
+            matcha.expect(value).toBe(true)
+        })
+    })
 })

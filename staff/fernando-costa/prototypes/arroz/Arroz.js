@@ -114,8 +114,18 @@ Arroz.prototype.lastIndexOf = function () {
 
 Arroz.prototype.at = function () {
     var index
-  return this[index]
+    return this[index]
 }
 
+Arroz.prototype.includes = function (value) {
+    for (var i = 0; i < this.length; i++) {
+        var element = this[i]
+
+        if (element === value)
+            return true
+
+    }
+    return false
+}
 
 module.exports = Arroz
