@@ -166,4 +166,21 @@ matcha.describe('Arroz', function () {
 
         })
     })
+
+    matcha.describe('> at', function () {
+        matcha.it('should takes an integer value and returns the item at that index', function () {
+            var a = new Arroz(10, 20, 30, 40)
+
+            matcha.expect(!!a.at).toBe(true)
+
+            var index = a.at()
+
+            matcha.expect(a.length).toBe(4)
+            matcha.expect(a[0]).toBe(10)
+            matcha.expect(a[1]).toBe(20)
+            matcha.expect(a[2]).toBe(30)
+            matcha.expect(a[3]).toBe(40)
+            matcha.expect(index).toBe()
+        })
+    })
 })

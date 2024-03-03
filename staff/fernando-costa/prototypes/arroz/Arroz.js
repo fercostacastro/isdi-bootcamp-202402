@@ -112,5 +112,10 @@ Arroz.prototype.lastIndexOf = function () {
     return -1
 }
 
+Arroz.prototype.at = function () {
+    var index
+  return this[index]
+}
+
 
 module.exports = Arroz
