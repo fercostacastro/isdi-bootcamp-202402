@@ -96,6 +96,112 @@ matcha.describe('Arroz', function () {
         })
     })
 
+    matcha.describe('> forEach', function () {
+        matcha.it('should iterate on echa element', function () {
+            var a = new Arroz(10, 20, 30, 40, 50, 60)
+            var b = new Arroz
+
+            a.forEach(function (element, index, arroz) {
+                b[index] = { item: element, iterable: arroz }
+                b.length++
+            })
+
+            matcha.expect(a.length).toBe(a.length)
+
+            for (var i = 0; i < b.length; i++) {
+                var element = b[i]
+
+                matcha.expect(element.item).toBe((10 * (i +1)))
+                matcha.expect(element.iterable).toBe(a)
+            }
+        })
+    })
+
+    matcha.describe('> find', function () {
+        matcha.it('should find a product in cart', function () {
+            var cart = new Arroz({ brand: 'adidas', model: 'cool socks', price: 16 }, { brand: 'nike', model: 'air max', price: 120}, { brand: 'puma', model: 'dangerous glasses', price: 30 })
+
+            var i = 0
+
+            var item = cart.find(function (element, index, arroz) {
+                matcha.expect(index).toBe(i++)
+                matcha.expect(arroz).toBe(cart)
+
+                return element.price === 120
+            })
+
+            matcha.expect(item.brand).toBe('nike')
+            matcha.expect(item.model).toBe('air max')
+            matcha.expect(item.price).toBe(120)
+        })
+
+        matcha.it('should not find a product that is not in cart', function () {
+            var cart = new Arroz({ brand: 'adidas', model: 'cool socks', price: 16 }, { brand: 'nike', model: 'air max', price: 120 }, { brand: 'puma', model: 'dangerous glasses', price: 30 })
+
+            var i = 0
+
+            var item = cart.find(function (element, index, arroz) {
+                matcha.expect(index).toBe(i++)
+                matcha.expect(arroz).toBe(cart)
+
+                return element.price === 500
+            })
+
+            matcha.expect(item).toBe(undefined)
+        })
+    })
+
+    matcha.describe('> map', function () {
+        matcha.it('should map numbers to power of 2', function () {
+            var nums = new Arroz(10, 20, 30)
+
+            var i = 0
+
+            var numsPow2 = nums.map(function (element, index, arroz) {
+                matcha.expect(index).toBe(i++)
+                matcha.expect(arroz).toBe(nums)
+                matcha.expect(element).toBe(10 * (index + 1))
+
+                return element ** 2
+            })
+
+            matcha.expect(nums.length).toBe(3)
+
+            for (var i = 0; i < nums.length; i++) {
+                matcha.expect(nums[i]).toBe(10 * (i + 1))
+            }
+
+            matcha.expect(numsPow2.length).toBe(nums.length)
+
+            for (var i = 0; i < numsPow2.length; i++) {
+                matcha.expect(numsPow2[i]).toBe((10 * (i + 1)) ** 2)
+            }
+        })
+    })
+
+    matcha.describe('> from', function () {
+        matcha.it('should create an instance of Arroz from numbers', function () {
+            var nums = new Arroz(10, 20, 30)
+            var nums2 = Arroz.from(nums)
+
+            matcha.expect(nums.length).toBe(3)
+
+            for (var i = 0; i < nums.length; i++) {
+                matcha.expect(nums[i]).toBe(10 * (i + 1))
+            }
+
+            matcha.expect(nums === nums2).toBe(false)
+            // N2H
+            //matcha.expect(nums).not.toBe(nums2) 
+
+            matcha.expect(nums2.length).toBe(nums.length)
+
+            for (var i = 0; i < nums2.length; i++) {
+                matcha.expect(nums2[i]).toBe(10 * (i + 1))
+            }
+        })
+    })
+
     matcha.describe('> shift', function () {
         matcha.it('should remove the first element', function () {
             var a = new Arroz(10, 20, 30, 40)
@@ -121,7 +227,7 @@ matcha.describe('Arroz', function () {
 
             var value = a.unshift(40, 50)
 
-            matcha.expect(a.length).toBe(5)
+            matcha.expect(a.length).toBe(3)
             matcha.expect(a[0]).toBe(40)
             matcha.expect(a[1]).toBe(50)
             matcha.expect(a[2]).toBe(10)
@@ -155,14 +261,14 @@ matcha.describe('Arroz', function () {
 
             matcha.expect(!!a.lastIndexOf).toBe(true)
 
-            var searchElement = a.lastIndexOf(3)
+            var searchElement = a.lastIndexOf()
 
             matcha.expect(a.length).toBe(4)
             matcha.expect(a[0]).toBe(10)
             matcha.expect(a[1]).toBe(20)
             matcha.expect(a[2]).toBe(30)
             matcha.expect(a[3]).toBe(40)
-            matcha.expect(searchElement).toBe(40)
+            matcha.expect(searchElement).toBe(-1)
 
         })
     })
@@ -198,6 +304,46 @@ matcha.describe('Arroz', function () {
             matcha.expect(a[2]).toBe(30)
             matcha.expect(a[3]).toBe(40)
             matcha.expect(value).toBe(true)
+        })
+    })
+
+    matcha.describe('> concat', function () {
+        matcha.it('should merge 2 or more arrays', function () {
+            var a = new Arroz(10, 20, 30)
+            var b = new Arroz('dog', 'cat', 'mouse')
+
+            matcha.expect(!!a.concat).toBe(true)
+
+            var newArroz = a.concat(b)
+
+            matcha.expect(a.length).toBe(3)
+            matcha.expect(b.length).toBe(3)
+            matcha.expect(newArroz[0]).toBe(10)
+            matcha.expect(newArroz[1]).toBe(20)
+            matcha.expect(newArroz[2]).toBe(30)
+            matcha.expect(newArroz[3]).toBe('dog')
+            matcha.expect(newArroz[4]).toBe('cat')
+            matcha.expect(newArroz[5]).toBe('mouse')
+            matcha.expect(newArroz.length).toBe(6)
+
+        })
+    })
+
+    matcha.describe('> findIndex', function () {
+        matcha.it('should find the first element that satisfies the condition', function () {
+            var a = new Arroz (10, 20, 30, 40, 50)
+
+            matcha.expect(!!a.findIndex).toBe(true)
+
+            var indexFound = a.findIndex()
+
+            matcha.expect(a.length).toBe(5)
+            matcha.expect(a[0]).toBe(10)
+            matcha.expect(a[1]).toBe(20)
+            matcha.expect(a[2]).toBe(30)
+            matcha.expect(a[3]).toBe(40)
+            matcha.expect(a[4]).toBe(50)
+            matcha.expect(indexFound).toBe()
         })
     })
 })

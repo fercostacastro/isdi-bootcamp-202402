@@ -61,6 +61,52 @@ Arroz.prototype.toString = function () {
     return string
 }
 
+Arroz.prototype.forEach = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i]
+
+        callback(elem, i, this)
+    }
+}
+
+Arroz.prototype.find = function (callback) {
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i]
+
+        var matches = callback(elem, i, this)
+
+        if (matches) return elem
+    }
+}
+
+Arroz.prototype.map = function (callback) {
+    var mapped = new Arroz
+
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i]
+
+        var mappedElement = callback(elem, i, this)
+
+        mapped[mapped.length++] = mappedElement
+    }
+
+    return mapped
+}
+
+Arroz.from = function (arroz) {
+    var instance = new Arroz
+
+    for (var i = 0; i < arroz.length; i++) {
+        var elem = arroz[i]
+
+        instance[instance.length++] = elem
+    }
+
+    return instance
+}
+
+module.exports = Arroz
+
 Arroz.prototype.shift = function () {
     var firstIndex = 0
 
@@ -126,6 +172,44 @@ Arroz.prototype.includes = function (value) {
 
     }
     return false
+}
+
+Arroz.prototype.concat = function () {
+    var concatArroz = new Arroz()
+
+
+    for (var i = 0; i < this.length; i++) {
+        concatArroz[concatArroz.length] = this[i]
+        concatArroz.length++
+    }
+
+    for (i = 0; i < arguments.length; i++) {
+        var elem = arguments[i]
+
+        if (elem instanceof Arroz) {
+
+            for (var j = 0; j < elem.length; j++) {
+                concatArroz[concatArroz.length] = elem[j]
+                concatArroz.length++
+            }
+        } else {
+            concatArroz[concatArroz.length] = elem[i]
+            concatArroz.length++
+        }
+    }
+    return concatArroz
+}
+
+Arroz.prototype.findIndex = function () {
+    for (var i = 0; i < this.length; i++) {
+        var elem = this[i]
+        var callback
+
+        var matches = callback(elem, i, this)
+
+        if (matches) return elem
+    }
+    return -1
 }
 
 module.exports = Arroz
