@@ -5,27 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
-    <body>
-        <main>
-            <h1>Hello, World!</h1>
+<body>
+    <main>
+        <h1>Hello, World!</h1>
+        <button id="logout-button">Logout</button>
+
+        <section id="post-list-section"></section>
+
+        <section id="create-post-section">
+            <h2>Create Post</h2>
 
             <form>
-                <input type="text" id="image" placeholder="image" alt="text" />
-                <input type="text" id="text" placeholder="text" alt="text" />
+                <label for="image">Image</label>
+                <input type="text" id="image">
 
-                <button id="create_post" type="submit">Create a post</button>
-                <button id="logout_button">Logout</button>
+                <label for="text">Text</label>
+                <input type="text" id="text">
+
+                <button id="create-button" type="submit">Create</button>
             </form>
 
-        </main>
+            <button id="create-post-cancel-button">Cancel</button>
+        </section>
+    </main>
 
-        <script src="data.js"></script>
-        <script src="logic.js"></script>
-        <script src="home.js"></script>
-        <script src="post.js"></script>
-    </body>
+    <footer>
+        <button id="create-post-button">+</button>
+    </footer>
+    <script src="data.js"></script>
+    <script src="logic.js"></script>
+    <script src="home.js"></script>
+</body>
 
 </html>
