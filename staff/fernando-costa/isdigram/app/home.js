@@ -46,7 +46,7 @@
 
                 postListSection.innerHTML = ''
 
-                posts.forEach(function (post) {
+                posts.forEach(function (post, index) {
                     var article = document.createElement('article')
 
                     var authorHeading = document.createElement('h3')
@@ -61,7 +61,17 @@
                     var dateTime = document.createElement('time')
                     dateTime.innerText = post.date
 
-                    article.append(authorHeading, image, paragraph, dateTime)
+                    var deletePostButton = document.createElement('button')
+                    deletePostButton.innerText = 'Delete Post'
+
+                    deletePostButton.addEventListener('click', function() {
+                        var idToDelete = post.id
+                    })
+                    /*
+                    var idPost = index + 1
+                    deletePostButton.id = idPost
+                    */
+                    article.append(authorHeading, image, paragraph, dateTime, deletePostButton)
 
                     postListSection.appendChild(article)
                 })

@@ -48,7 +48,8 @@ var logic = (function () {
             author: sessionStorage.username,
             image: image,
             text: text,
-            date: new Date().toLocaleDateString('en-CA')
+            date: new Date().toLocaleDateString('en-CA'),
+            id: Date.now()
         }
 
         data.insertPost(post)
