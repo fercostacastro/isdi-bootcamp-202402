@@ -1,8 +1,13 @@
 // presentation
 
 (function () {
+    if (logic.isUserLoggedIn()) {
+        location.href = '../home'
+
+        return
+    }
+
     var form = document.querySelector('form')
-    var loginLink = document.querySelector('a')
 
     form.addEventListener('submit', function (event) {
         console.log('form submit')
@@ -29,7 +34,7 @@
 
             form.reset()
 
-            loginLink.click()
+            location.href = '../login'
         } catch (error) {
             alert(error.message)
         }

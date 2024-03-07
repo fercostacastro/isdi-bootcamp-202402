@@ -1,6 +1,12 @@
 // presentation
 
 (function () {
+    if (logic.isUserLoggedIn()) {
+        location.href = '../home'
+
+        return
+    }
+
     var form = document.querySelector('form')
 
     form.addEventListener('submit', function (event) {
@@ -19,8 +25,7 @@
 
             form.reset()
 
-            var homeAddress = location.href.replace('login', 'home')
-            location.href = homeAddress
+            location.href = '../home'
         } catch (error) {
             alert(error.message)
         }
