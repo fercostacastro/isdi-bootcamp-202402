@@ -17,7 +17,7 @@ function split(string, separator) {
   return resultArray;
 }
 
-// CASE 1
+console.log('CASE 1')
 var s = "hola mundo";
 var words = split(s, " ");
 console.log(words);

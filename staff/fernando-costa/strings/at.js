@@ -19,13 +19,13 @@ function at(string, index) {
   return character
 }
 
-// case 1
+console.log('CASE 1')
 var s = "hola mundo";
 var char = at(s, 6);
 console.log(char);
 // 'u'
 
-// Case 2
+console.log('CASE 2')
 var s = "hola mundo";
 var char = at(s, 20);
 console.log(char);

@@ -2,7 +2,7 @@ delete String.prototype.endsWith
 
 function endsWith(string, searchString) {
     
-    var currentValue = "";
+    var currentValue = ""
     for (var i = string.length - searchString.length; i < string.length; i++){
        currentValue = currentValue + string[i] 
        console.log(currentValue)
@@ -14,13 +14,14 @@ function endsWith(string, searchString) {
     }
 }
 
-// CASE 1
+console.log('CASE 1')
 var s = 'hola mundo'
 var result = endsWith(s, 'ndo')
 console.log(result)
 // true
 
-// CASE 2
+
+console.log('CASE 2')
 var s = 'hola mundo'
 var result = endsWith(s, 'dos')
 console.log(result)
