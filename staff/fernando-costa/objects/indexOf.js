@@ -1,5 +1,4 @@
 function indexOf(object, value) {
-    // TODO
 
     for (var i = 0; i < object.length; i++) {
         var elem = object[i]
