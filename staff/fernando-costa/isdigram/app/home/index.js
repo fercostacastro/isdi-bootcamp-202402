@@ -92,9 +92,7 @@
 
                 if (post.author.id === logic.getLoggedInUserId()) {
                     var deleteButton = document.createElement('button')
-                    var editPostButton = document.createElement('button')
 
-                    editPostButton.innerText = 'Edit Post'
                     deleteButton.innerText = '🗑️'
 
                     deleteButton.onclick = function () {
@@ -110,19 +108,6 @@
                             }
                     }
 
-                    editPostButton.onclick = function () {
-                        if (confirm('Are you sure you want to edit this post?'))
-                            try {
-                                logic.editPost(post.id)
-
-                                renderPosts()
-                            } catch (error) {
-                                console.error(error)
-
-                                alert(error.message)
-                            }
-                    }
-                    article.appendChild(editPostButton)
                     article.appendChild(deleteButton)
                 }
 
@@ -150,7 +135,7 @@
         userList.innerHTML = ''
 
         try {
-            var users = logic.retrieveUsers()
+            var users = logic.retrieveUsersWithStatus()
 
             users.forEach(function (user) {
                 var item = document.createElement('li')
