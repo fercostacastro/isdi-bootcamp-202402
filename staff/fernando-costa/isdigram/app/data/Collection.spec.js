@@ -211,5 +211,29 @@ describe('Collection', function () {
                 expect(document.model).toBe('fiesta')
             })
         })
+
+        describe('updateOne', function () {
+            it('should update a new document', function () {
+                localStorage.cars = '[{"brand":"porsche","model":"911","id":"1"},{"brand":"fiat","model":"500","id":"2"}]'
+
+                var cars = new Collection('cars')
+
+                var car = cars.updateOne({brand: "ferrari", model: "testarossa", id: "2"})
+
+                var documents = cars._loadDocuments()
+
+                expect(documents).toBeInstanceOf(Array)
+                expect(documents.length).toBe(2)
+
+                var document = documents[0]
+                expect(document).toBeInstanceOf(Object)
+                expect(document.brand).toBe('porsche')
+                expect(document.model).toBe('911')
+
+                var document = documents[1]
+                expect(document.brand).toBe('ferrari')
+                expect(document.model).toBe('testarossa')
+            })
+        })
     })
 })
