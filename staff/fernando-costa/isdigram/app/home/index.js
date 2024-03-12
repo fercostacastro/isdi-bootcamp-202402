@@ -16,8 +16,13 @@
     var postListSection = document.querySelector('#post-list-section')
     var chatButton = document.querySelector('#chat-button')
     var chatSection = document.querySelector('#chat-section')
+    var chatPanel = chatSection.querySelector('#chat-panel')
+    var chatForm = chatPanel.querySelector('form')
     var footer = document.querySelector('#footer')
     var homeButton = document.querySelector('#home-button')
+    var editPostSection = document.querySelector('#edit-post-section')
+    var editPostCancelButton = editPostSection.querySelector('#edit-post-cancel-button')
+    var editPostForm = editPostSection.querySelector('form')
 
     try {
         var user = logic.retrieveUser()
@@ -27,6 +32,15 @@
         console.error(error)
 
         alert(error.message)
+
+        try {
+            logic.logoutUser()
+
+        } catch (error) {
+            logic.cleanUpLoggedInUserId()
+        }
+
+        location.href = '../login'
     }
 
     logoutButton.onclick = function () {
@@ -96,7 +110,7 @@
                     deleteButton.innerText = '🗑️'
 
                     deleteButton.onclick = function () {
-                        if (confirm('Are you sure you want to delete this post?'))
+                        if (confirm('delete post?'))
                             try {
                                 logic.removePost(post.id)
 
@@ -108,7 +122,39 @@
                             }
                     }
 
-                    article.appendChild(deleteButton)
+                    var editButton = document.createElement('button')
+
+                    editButton.innerText = '📝'
+
+                    editButton.onclick = function () {
+                        var textInput = editPostForm.querySelector('#text')
+
+                        textInput.value = post.text
+
+                        editPostForm.onsubmit = function (event) {
+                            event.preventDefault()
+
+                            var text = textInput.value
+
+                            try {
+                                logic.modifyPost(post.id, text)
+
+                                editPostForm.reset()
+
+                                editPostSection.style.display = ''
+
+                                renderPosts()
+                            } catch (error) {
+                                console.error(error)
+
+                                alert(error.message)
+                            }
+                        }
+
+                        editPostSection.style.display = 'block'
+                    }
+
+                    article.append(deleteButton, editButton)
                 }
 
                 postListSection.appendChild(article)
@@ -121,6 +167,8 @@
     }
 
     renderPosts()
+
+    var renderMessagesIntervalId
 
     chatButton.onclick = function () {
         postListSection.style.display = 'none'
@@ -140,12 +188,74 @@
             users.forEach(function (user) {
                 var item = document.createElement('li')
 
+                item.classList.add('user-list__item')
+
                 if (user.status === 'online')
                     item.classList.add('user-list__item--online')
                 else if (user.status === 'offline')
                     item.classList.add('user-list__item--offline')
 
                 item.innerText = user.username
+
+                item.onclick = function () {
+                    var usernameTitle = chatPanel.querySelector('#chat-panel__username')
+
+                    usernameTitle.innerText = user.username
+
+                    function renderMessages() {
+                        try {
+                            var messages = logic.retrieveMessagesWithUser(user.id)
+
+                            var messageList = chatPanel.querySelector('#message-list')
+
+                            messageList.innerHTML = ''
+
+                            messages.forEach(function (message) {
+                                var messageParagraph = document.createElement('p')
+
+                                messageParagraph.innerText = message.text
+
+                                if (message.from === logic.getLoggedInUserId())
+                                    messageParagraph.classList.add('message-list__item--right')
+                                else
+                                    messageParagraph.classList.add('message-list__item--left')
+
+                                messageList.appendChild(messageParagraph)
+                            })
+                        } catch (error) {
+                            console.error(error)
+
+                            alert(error.message)
+                        }
+                    }
+
+                    renderMessages()
+
+                    clearInterval(renderMessagesIntervalId)
+
+                    renderMessagesIntervalId = setInterval(renderMessages, 1000)
+
+                    chatForm.onsubmit = function (event) {
+                        event.preventDefault()
+
+                        var textInput = chatForm.querySelector('#text')
+                        var text = textInput.value
+
+                        try {
+                            logic.sendMessageToUser(user.id, text)
+
+                            chatForm.reset()
+
+                            renderMessages()
+                        } catch (error) {
+                            console.error(error)
+
+                            alert(error.message)
+                        }
+                    }
+
+                    chatPanel.style.display = 'block'
+                }
 
                 userList.appendChild(item)
             })
@@ -163,5 +273,9 @@
         postListSection.style.display = ''
         footer.style.display = ''
         chatButton.style.display = ''
+    }
+
+    editPostCancelButton.onclick = function () {
+        editPostSection.style.display = ''
     }
 })()
