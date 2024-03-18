@@ -1,4 +1,4 @@
-import utils from '../../Utils.mjs'
+import utils from '../../utils.mjs'
 
 import logic from '../../logic.mjs'
 
@@ -20,6 +20,10 @@ class Posts extends Component {
 
             posts.forEach(post => {
                 const post2 = new Post(post)
+
+                post2.onDeleted(() => this.refresh())
+
+                post2.onDeleted(() => this.refresh())
 
                 this.add(post2)
             })
