@@ -48,7 +48,7 @@ class Post extends Component {
 
                     editPost.onCancelClick(() => this.remove(editPost))
 
-                    editPost.onCancelClick(() => this._onEditedCallback())
+                    editPost.onPostEdited(() => this._onEditedCallback())
 
                     this.add(editPost)
                 }

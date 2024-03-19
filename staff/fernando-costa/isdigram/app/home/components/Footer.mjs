@@ -7,7 +7,7 @@ class Footer extends Component {
 
         this.addClass('footer')
 
-        const createPostButton = new Button 
+        const createPostButton = new Button
         createPostButton.setText('➕')
 
         this.add(createPostButton)

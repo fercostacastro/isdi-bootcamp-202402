@@ -27,10 +27,12 @@ class Home extends Component {
         }
 
         const menu = new Menu
-        
+
         const chat = new Chat
 
         menu.onChatClick(() => {
+            postList.stopAutoRefresh()
+
             this.remove(postList)
             this.remove(footer)
 
@@ -38,6 +40,8 @@ class Home extends Component {
         })
 
         menu.onHomeClick(() => {
+            chat.stopAutoRefresh()
+
             this.remove(chat)
 
             this.add(postList)

@@ -5,8 +5,10 @@ import logic from '../../logic.mjs'
 import Component from '../../core/Component.mjs'
 import Label from '../../core/Label.mjs'
 import Input from '../../core/Input.mjs'
-import Button from '../../core/Button.mjs'
 import Form from '../../core/Form.mjs'
+
+import SubmitButton from '../../library/SubmitButton.mjs'
+import CancelButton from '../../library/CancelButton.mjs'
 
 class EditPost extends Component {
     constructor(post) {
@@ -15,7 +17,7 @@ class EditPost extends Component {
         this.addClass('edit-post')
 
         const title = new Component('h2')
-        title.setText('Edit-Post')
+        title.setText('Edit Post')
 
         const form = new Form
 
@@ -28,13 +30,13 @@ class EditPost extends Component {
         textInput.setType('text')
         textInput.setValue(post.text)
 
-        const editButton = new Button
+        const editButton = new SubmitButton
         editButton.setType('submit')
         editButton.setText('Save')
 
-        form.add(title, textLabel, textInput. editButton)
+        form.add(textLabel, textInput, editButton)
 
-        const cancelButton = new Button
+        const cancelButton = new CancelButton
         cancelButton.setText('Cancel')
 
         this._cancelButton = cancelButton
@@ -49,7 +51,7 @@ class EditPost extends Component {
             try {
                 logic.modifyPost(post.id, text)
 
-                this._cancelButton._onPostEditedCallback()
+                this._onPostEditedCallback()
             } catch (error) {
                 utils.showFeedback(error)
             }

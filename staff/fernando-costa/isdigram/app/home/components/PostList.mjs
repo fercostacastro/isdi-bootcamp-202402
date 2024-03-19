@@ -5,11 +5,13 @@ import logic from '../../logic.mjs'
 import Component from '../../core/Component.mjs'
 import Post from './Post.mjs'
 
-class Posts extends Component {
+class PostList extends Component {
     constructor() {
         super('section')
 
         this.refresh()
+
+        this._refreshIntervalId = setInterval(() => this.refresh(), 5000)
     }
 
     refresh() {
@@ -23,7 +25,7 @@ class Posts extends Component {
 
                 post2.onDeleted(() => this.refresh())
 
-                post2.onDeleted(() => this.refresh())
+                post2.onEdited(() => this.refresh())
 
                 this.add(post2)
             })
@@ -31,6 +33,10 @@ class Posts extends Component {
             utils.showFeedback(error)
         }
     }
+
+    stopAutoRefresh() {
+        clearInterval(this._refreshIntervalId)
+    }
 }
 
-export default Posts
+export default PostList

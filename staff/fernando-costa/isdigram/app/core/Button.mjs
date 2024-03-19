@@ -6,7 +6,7 @@ class Button extends Component {
     }
 
     setType(type) {
-        if (typeof type !== 'string') throw new TypeError ('type is not a string')
+        if (typeof type !== 'string') throw new TypeError('type is not a string')
 
         this._container.type = type
     }
