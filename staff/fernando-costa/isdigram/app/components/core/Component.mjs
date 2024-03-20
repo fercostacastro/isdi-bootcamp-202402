@@ -1,6 +1,9 @@
 class Component {
-    constructor(tagName = 'div') {
-        this._container = document.createElement(tagName)
+    constructor(tagNameOrContainer = 'div') {
+        if (tagNameOrContainer instanceof HTMLElement)
+            this._container = tagNameOrContainer
+        else
+            this._container = document.createElement(tagNameOrContainer)
     }
 
     setText(text) {

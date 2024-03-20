@@ -22,6 +22,10 @@ form {
   background-color: gold;
 }
 
+.cancel-button {
+  background-color: smoke;
+}
+
 .user-list__item {
   cursor: pointer;
 }
