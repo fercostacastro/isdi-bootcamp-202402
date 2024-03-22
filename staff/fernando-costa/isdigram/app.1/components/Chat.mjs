@@ -30,18 +30,20 @@ class Chat extends Component {
 
                 this.add(this._messageList, sendMessageForm)
             } else {
-                // this._messageList.stopAutoRefresh()
+                this._messageList.stopAutoRefresh()
 
                 const oldMessageList = this._messageList
                 const oldSendMessageForm = sendMessageForm
 
-                this._messageList = new MessageList(user.id)
+                const newMessageList = new MessageList(user.id)
                 sendMessageForm = new SendMessageForm(user.id)
 
                 sendMessageForm.onSendMessage(() => this._messageList.refresh())
 
-                this.replace(oldMessageList, this._messageList)
+                this.replace(oldMessageList, newMessageList)
                 this.replace(oldSendMessageForm, sendMessageForm)
+
+                this._messageList = newMessageList
             }
         })
 
