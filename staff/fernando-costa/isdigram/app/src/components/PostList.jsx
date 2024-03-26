@@ -1,47 +1,53 @@
-import utils from '../utils.mjs'
+import { logger, showFeedback } from '../utils'
 
-import logic from '../logic.mjs'
+import logic from '../logic'
 
 import { Component } from 'react'
+import Post from './Post'
 
 class PostList extends Component {
     constructor() {
+        logger.debug('PostList')
+
         super()
+
+        this.state = { posts: [] }
+    }
+
+    loadPosts() {
+        logger.debug('PostList -> loadPosts')
 
         try {
             const posts = logic.retrievePosts()
 
-            this.state = { posts }
+            this.setState({ posts })
         } catch (error) {
-            utils.showFeedback(error)
+            showFeedback(error)
         }
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(this.props, newProps)
+        logger.debug('PostList -> componentWillReceiveProps', JSON.stringify(this.props), JSON.stringify(newProps))
 
-        if (newProps.refreshStamp !== this.props.stamp) {
-            try {
-                const posts = logic.retrievePosts()
-
-                this.setState({ posts })
-            } catch (error) {
-                utils.showFeedback(error)
-            }
-        }
+        //if (newProps.stamp !== this.props.stamp) this.loadPosts()
+        newProps.stamp !== this.props.stamp && this.loadPosts()
     }
 
+    componentDidMount() {
+        logger.debug('PostList -> componentDidMount')
+
+        this.loadPosts()
+    }
+
+    handlePostDeleted = () => this.loadPosts()
+
+    handleEditClick = post => this.props.onEditPostClick(post)
+
     render() {
+        logger.debug('PostList -> render')
+
         return <section>
-            {this.state.posts.map(post => <article key={post.id}>
-                <h3>{post.author.username}</h3>
-
-                <img src={post.image} />
-
-                <p>{post.text}</p>
-
-                <time>{post.date}</time>
-            </article>)}
+            {this.state.posts.map(post => <Post item={post} onEditClick={this.handleEditClick} onDeleted={this.handlePostDeleted} />)}
         </section>
     }
 }

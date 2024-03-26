@@ -1,30 +1,38 @@
-import logic from './logic.mjs'
+class Logger {
+  static DEBUG = 0
+  static INFO = 1
+  static WARN = 2
+  static ERROR = 3
+  static FATAL = 4
 
-import { Component } from 'react'
-import Landing from './pages/Landing'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Home from './pages/Home'
+  // constructor() {
+  //     this.level = Logger.DEBUG
+  // }
+  level = Logger.DEBUG
 
-class App extends Component {
-  constructor() {
-    super()
-
-    this.state = { view: logic.isUserLoggedIn() ? 'home' : 'landing' }
+  #buildMessage(messages) {
+      return `${new Date().toISOString()} - ${messages.join(' ')}`
   }
 
-  render() {
-    if (this.state.view === 'landing')
-      return <Landing onLoginClick={() => this.setState({ view: 'login' })} onRegisterClick={() => this.setState({ view: 'register' })} />
-    else if (this.state.view === 'login')
-      return <Login onRegisterClick={() => this.setState({ view: 'register' })} onUserLoggedIn={() => this.setState({ view: 'home' })} />
-    else if (this.state.view === 'register')
-      return <Register onLoginClick={() => this.setState({ view: 'login' })} onUserRegistered={() => this.setState({ view: 'login' })} />
-    else if (this.state.view === 'home')
-      return <Home />
-    else
-      return <h1>🤨</h1>
+  debug(...messages) {
+      this.level < Logger.INFO && console.debug(`%c${this.#buildMessage(messages)}`, 'color: greenyellow')
+  }
+
+  info(...messages) {
+      this.level < Logger.WARN && console.info(`%c${this.#buildMessage(messages)}`, 'color: dodgerblue')
+  }
+
+  warn(...messages) {
+      this.level < Logger.ERROR && console.warn(`%c${this.#buildMessage(messages)}`, 'color: orange')
+  }
+
+  error(...messages) {
+      this.level < Logger.FATAL && console.error(`%c${this.#buildMessage(messages)}`, 'color: tomato')
+  }
+
+  fatal(...messages) {
+      console.error(`%c${this.#buildMessage(messages)}`, 'background-color: red; color: white; padding: 0 .5rem')
   }
 }
 
-export default App
+export default Logger
