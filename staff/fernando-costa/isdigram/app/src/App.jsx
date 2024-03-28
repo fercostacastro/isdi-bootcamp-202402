@@ -1,38 +1,56 @@
-class Logger {
-  static DEBUG = 0
-  static INFO = 1
-  static WARN = 2
-  static ERROR = 3
-  static FATAL = 4
+import { logger } from './utils'
 
-  // constructor() {
-  //     this.level = Logger.DEBUG
-  // }
-  level = Logger.DEBUG
+import logic from './logic'
 
-  #buildMessage(messages) {
-      return `${new Date().toISOString()} - ${messages.join(' ')}`
+import { Component } from 'react'
+import Landing from './pages/Landing'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Home from './pages/Home'
+
+class App extends Component {
+  constructor() {
+    logger.debug('App')
+
+    super()
+
+    this.state = { view: logic.isUserLoggedIn() ? 'home' : 'landing' }
   }
 
-  debug(...messages) {
-      this.level < Logger.INFO && console.debug(`%c${this.#buildMessage(messages)}`, 'color: greenyellow')
+  setState(state) {
+    logger.debug('App -> setState', JSON.stringify(state))
+
+    super.setState(state)
   }
 
-  info(...messages) {
-      this.level < Logger.WARN && console.info(`%c${this.#buildMessage(messages)}`, 'color: dodgerblue')
+  componentDidMount() {
+    logger.debug('App -> componentDidMount')
   }
 
-  warn(...messages) {
-      this.level < Logger.ERROR && console.warn(`%c${this.#buildMessage(messages)}`, 'color: orange')
-  }
+  goToLogin = () => this.setState({ view: 'login' })
 
-  error(...messages) {
-      this.level < Logger.FATAL && console.error(`%c${this.#buildMessage(messages)}`, 'color: tomato')
-  }
+  handleLoginClick = () => this.goToLogin()
 
-  fatal(...messages) {
-      console.error(`%c${this.#buildMessage(messages)}`, 'background-color: red; color: white; padding: 0 .5rem')
+  handleRegisterClick = () => this.setState({ view: 'register' })
+
+  handleUserLoggedIn = () => this.setState({ view: 'home' })
+
+  handleUserLoggedOut = () => this.goToLogin()
+
+  render() {
+    logger.debug('App -> render')
+
+    if (this.state.view === 'landing')
+      return <Landing onLoginClick={this.handleLoginClick} onRegisterClick={this.handleRegisterClick} />
+    else if (this.state.view === 'login')
+      return <Login onRegisterClick={this.handleRegisterClick} onUserLoggedIn={this.handleUserLoggedIn} />
+    else if (this.state.view === 'register')
+      return <Register onLoginClick={this.handleLoginClick} onUserRegistered={this.handleLoginClick} />
+    else if (this.state.view === 'home')
+      return <Home onUserLoggedOut={this.handleUserLoggedOut} /> // new Home().render(...)
+    else
+      return <h1>🤨</h1>
   }
 }
 
-export default Logger
+export default App
