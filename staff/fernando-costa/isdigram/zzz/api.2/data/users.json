@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Pepito Grillo",
+        "birthdate": "2000-01-01",
+        "email": "pepito@grillo.com",
+        "username": "pepitogrillo",
+        "password": "123123abc",
+        "status": "online",
+        "id": "dtlxhemrtg8"
+    },
+    {
+        "name": "Cala Baza",
+        "birthdate": "2000-02-02",
+        "email": "cala@baza.com",
+        "username": "calabaza",
+        "password": "123123abc",
+        "status": "online",
+        "id": "9jgxjom8mzo"
+    },
+    {
+        "name": "Pepe Roni",
+        "birthdate": "2000-01-01",
+        "email": "pepe@roni.com",
+        "username": "peperoni",
+        "password": "123qwe123",
+        "id": "dhkiyltzwa8"
+    }
+]

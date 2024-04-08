@@ -1,22 +1,22 @@
-import fs from 'fs'
+import { writeFile, readFile } from 'fs'
 
-import Collecction from './Collection.mjs'
+import Collection from './Collection.js'
 
 import { expect } from 'chai'
 
 describe('Collection', () => {
     describe('constructor', () => {
         it('creates a collection', () => {
-            const cars = new Collecction('cars')
+            const cars = new Collection('cars')
 
-            expect(cars).to.be.instanceOf(Collecction)
+            expect(cars).to.be.instanceOf(Collection)
         })
     })
 
     describe('> helpers', () => {
         describe('_generateId', () => {
             it('generates a random id', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 const id1 = cars._generateId()
 
@@ -32,18 +32,18 @@ describe('Collection', () => {
 
         describe('_loadDocuments', () => {
             it('loads empty array on new collection', done => {
-                fs.writeFile('./data/cars.json', '[]', error => {
+                writeFile('./data/cars.json', '[]', error => {
                     if (error) {
-                        console.error(error)
+                        done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars._loadDocuments((error, documents) => {
                         if (error) {
-                            console.error(error)
+                            done(error)
 
                             return
                         }
@@ -51,7 +51,7 @@ describe('Collection', () => {
                         expect(error).to.be.null
 
                         expect(documents).to.be.instanceOf(Array)
-                        expect(documents.length).to.be.equal(0)
+                        expect(documents.length).to.equal(0)
 
                         done()
                     })
@@ -59,18 +59,18 @@ describe('Collection', () => {
             })
 
             it('loads data on non-empty collection', done => {
-                fs.writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"}, {"brand":"fiat","model":"500"}]', error => {
+                writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"},{"brand":"fiat","model":"500"}]', error => {
                     if (error) {
-                        console.error(error)
+                        done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars._loadDocuments((error, documents) => {
                         if (error) {
-                            console.error(error)
+                            done(error)
 
                             return
                         }
@@ -78,7 +78,7 @@ describe('Collection', () => {
                         expect(error).to.be.null
 
                         expect(documents).to.be.instanceOf(Array)
-                        expect(documents.length).to.be.equal(2)
+                        expect(documents.length).to.equal(2)
 
                         let document = documents[0]
                         expect(document).to.be.instanceOf(Object)
@@ -97,29 +97,29 @@ describe('Collection', () => {
 
         describe('_saveDocuments', () => {
             it('saves a collection', done => {
-                fs.writeFile('./data/cars.json', '[]', error => {
+                writeFile('./data/cars.json', '[]', error => {
                     if (error) {
-                        console.error(error)
+                        done(error)
 
                         return
                     }
 
-                    const documents = [{ brand: 'porsche', model: '911' }, { brand: 'flat', model: '500' }]
+                    const documents = [{ brand: 'porsche', model: '911' }, { brand: 'fiat', model: '500' }]
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars._saveDocuments(documents, error => {
                         if (error) {
-                            console.error(error)
+                            done(error)
 
                             return
                         }
 
                         expect(error).to.be.null
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
-                                console.error(error)
+                                done(error)
 
                                 return
                             }
@@ -136,7 +136,7 @@ describe('Collection', () => {
             it('fails on non-array documents', () => {
                 const documents = 'hola documents'
 
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
@@ -151,9 +151,9 @@ describe('Collection', () => {
             })
 
             it('fails on array with non-object document in documents', () => {
-                const documents = [{ brand: 'porsche', model: '911' }, { brand: 'fiat', model: '500' }, 'hola mundo']
+                const documents = [{ brand: 'porsche', model: '911' }, { brand: 'fiat', model: '500' }, 'hola document']
 
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
@@ -172,18 +172,18 @@ describe('Collection', () => {
     describe('> CRUD', () => {
         describe('findOne', () => {
             it('finds an existing document', done => {
-                fs.writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"},{"brand":"fiat","model":"500"}]', error => {
+                writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"},{"brand":"fiat","model":"500"}]', error => {
                     if (error) {
-                        console.error(error)
+                        done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars.findOne(car => car.brand === 'fiat', (error, car) => {
                         if (error) {
-                            console.error(error)
+                            done(error)
 
                             return
                         }
@@ -199,15 +199,15 @@ describe('Collection', () => {
                 })
             })
 
-            it('return null on non-existing document', done => {
-                fs.writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"}, {"brand":"fiat","model":"500"}]', error => {
+            it('returns null on non-existing document', done => {
+                writeFile('./data/cars.json', '[{"brand":"porsche","model":"911"},{"brand":"fiat","model":"500"}]', error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars.findOne(car => car.brand === 'peugeot', (error, car) => {
                         if (error) {
@@ -225,11 +225,12 @@ describe('Collection', () => {
             })
 
             it('fails on no callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.findOne()
                 } catch (error) {
                     errorThrown = error
@@ -240,11 +241,12 @@ describe('Collection', () => {
             })
 
             it('fails on non-function callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.findOne(123)
                 } catch (error) {
                     errorThrown = error
@@ -256,18 +258,18 @@ describe('Collection', () => {
         })
 
         describe('insertOne', () => {
-            it('inserts one document', done => {
+            it('insert one document', done => {
                 const documents = [{ brand: 'porsche', model: '911' }, { brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     const document = { brand: 'peugeot', model: '504' }
 
@@ -280,7 +282,7 @@ describe('Collection', () => {
 
                         expect(insertedId).to.be.a.string
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
                                 done(error)
 
@@ -304,11 +306,12 @@ describe('Collection', () => {
             })
 
             it('fails on no document', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.insertOne()
                 } catch (error) {
                     errorThrown = error
@@ -318,12 +321,13 @@ describe('Collection', () => {
                 expect(errorThrown.message).to.equal('document is not an object')
             })
 
-            it('fails on no callabck', () => {
-                const cars = new Collecction('cars')
+            it('fails on no callback', () => {
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.insertOne({})
                 } catch (error) {
                     errorThrown = error
@@ -334,19 +338,19 @@ describe('Collection', () => {
             })
         })
 
-        describe('upodateOne', () => {
+        describe('updateOne', () => {
             it('updates an existing document', done => {
                 const documents = [{ id: '123', brand: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     const document = { id: '123', brand: 'porsche', model: 'panamera' }
 
@@ -359,7 +363,7 @@ describe('Collection', () => {
 
                         expect(updated).to.be.true
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
                                 done(error)
 
@@ -368,7 +372,7 @@ describe('Collection', () => {
 
                             const documents = JSON.parse(documentsJSON)
                             expect(documents).to.have.lengthOf(2)
-                            expect(documents[0]).to.be.deep.equal(document)
+                            expect(documents[0]).to.deep.equal(document)
 
                             done()
                         })
@@ -377,17 +381,17 @@ describe('Collection', () => {
             })
 
             it('does not update a non-existing document', done => {
-                const documents = [{ id: '123', brand: '345', brand: 'fiat', model: '500' }]
+                const documents = [{ id: '123', brand: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     const document = { id: '123', brand: 'porsche', model: 'panamera' }
 
@@ -400,7 +404,7 @@ describe('Collection', () => {
 
                         expect(updated).to.be.false
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
                                 done(error)
 
@@ -417,11 +421,12 @@ describe('Collection', () => {
             })
 
             it('fails on no condition callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.updateOne()
                 } catch (error) {
                     errorThrown = error
@@ -432,11 +437,12 @@ describe('Collection', () => {
             })
 
             it('fails on no document', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.updateOne(() => { })
                 } catch (error) {
                     errorThrown = error
@@ -447,11 +453,12 @@ describe('Collection', () => {
             })
 
             it('fails on no callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.updateOne(() => { }, {})
                 } catch (error) {
                     errorThrown = error
@@ -463,18 +470,18 @@ describe('Collection', () => {
         })
 
         describe('deleteOne', () => {
-            it('deletes an existing document', done => {
-                const documents = [{ id: '123', model: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
+            it('deletes and existing document', done => {
+                const documents = [{ id: '123', brand: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars.deleteOne(car => car.id === '123', (error, deleted) => {
                         if (error) {
@@ -485,7 +492,7 @@ describe('Collection', () => {
 
                         expect(deleted).to.be.true
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
                                 done(error)
 
@@ -506,14 +513,14 @@ describe('Collection', () => {
                 const documents = [{ id: '123', brand: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars.deleteOne(car => car.id === '789', (error, deleted) => {
                         if (error) {
@@ -524,7 +531,7 @@ describe('Collection', () => {
 
                         expect(deleted).to.be.false
 
-                        fs.readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
+                        readFile('./data/cars.json', 'utf8', (error, documentsJSON) => {
                             if (error) {
                                 done(error)
 
@@ -541,11 +548,12 @@ describe('Collection', () => {
             })
 
             it('fails on no condition callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.deleteOne()
                 } catch (error) {
                     errorThrown = error
@@ -556,11 +564,12 @@ describe('Collection', () => {
             })
 
             it('fails on no callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.deleteOne(() => { })
                 } catch (error) {
                     errorThrown = error
@@ -576,14 +585,14 @@ describe('Collection', () => {
                 const documents = [{ id: '123', brand: 'porsche', model: '911' }, { id: '345', brand: 'fiat', model: '500' }]
                 const documentsJSON = JSON.stringify(documents)
 
-                fs.writeFile('./data/cars.json', documentsJSON, error => {
+                writeFile('./data/cars.json', documentsJSON, error => {
                     if (error) {
                         done(error)
 
                         return
                     }
 
-                    const cars = new Collecction('cars')
+                    const cars = new Collection('cars')
 
                     cars.getAll((error, documents2) => {
                         if (error) {
@@ -600,11 +609,12 @@ describe('Collection', () => {
             })
 
             it('fails on no callback', () => {
-                const cars = new Collecction('cars')
+                const cars = new Collection('cars')
 
                 let errorThrown
 
                 try {
+                    //@ts-ignore
                     cars.getAll()
                 } catch (error) {
                     errorThrown = error

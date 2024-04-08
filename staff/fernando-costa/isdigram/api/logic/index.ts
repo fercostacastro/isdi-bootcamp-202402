@@ -1,4 +1,6 @@
-import db from '../data/index.mjs'
+//@ts-nocheck
+
+import db from '../data/index.ts'
 
 // constants
 
@@ -9,7 +11,7 @@ const URL_REGEX = /^(http|https):\/\//
 
 // helpers
 
-function validateText(text, explain, checkEmptySpaceInside) {
+function validateText(text, explain, checkEmptySpaceInside?) {
     if (typeof text !== 'string') throw new TypeError(explain + ' ' + text + ' is not a string')
     if (!text.trim().length) throw new Error(explain + ' >' + text + '< is empty or blank')
 
@@ -22,12 +24,12 @@ function validateDate(date, explain) {
     if (!DATE_REGEX.test(date)) throw new Error(explain + ' ' + date + ' does not have a valid format')
 }
 
-function validateEmail(email, explain) {
-    if (!EMAIL_REGEX.test(email)) throw new Error(explain + ' ' + email + ' is not an email')
+function validateEmail(email, explain = 'email') {
+    if (!EMAIL_REGEX.test(email)) throw new Error(`${explain} ${email} is not an email`)
 }
 
-function validatePassword(password, explain) {
-    if (!PASSWORD_REGEX.test(password)) throw new Error(explain + ' ' + password + ' is not acceptable')
+function validatePassword(password, explain = 'password') {
+    if (!PASSWORD_REGEX.test(password)) throw new Error(`${explain} password is not acceptable`)
 }
 
 function validateUrl(url, explain) {
@@ -67,7 +69,7 @@ function registerUser(name, birthdate, email, username, password, callback) {
             email: email,
             username: username,
             password: password,
-            status: 'offline'
+            status: 'offline',
         }
 
         db.users.insertOne(user, error => {
@@ -145,6 +147,8 @@ function retrieveUser(userId, callback) {
     })
 }
 
+// TODO next ...
+
 function logoutUser() {
     const user = db.users.findOne(user => user.id === sessionStorage.userId)
 
@@ -153,20 +157,6 @@ function logoutUser() {
     user.status = 'offline'
 
     db.users.updateOne(user)
-
-    delete sessionStorage.userId
-}
-
-function getLoggedInUserId() {
-    return sessionStorage.userId
-}
-
-function isUserLoggedIn() {
-    return !!sessionStorage.userId
-}
-
-function cleanUpLoggedInUserId() {
-    delete sessionStorage.userId
 }
 
 function retrieveUsersWithStatus() {
@@ -226,7 +216,7 @@ function retrieveMessagesWithUser(userId) {
     const chat = db.chats.findOne(chat => chat.users.includes(userId) && chat.users.includes(sessionStorage.userId))
 
     if (chat)
-        return chat.message
+        return chat.messages
 
     return []
 }
@@ -247,16 +237,62 @@ function createPost(image, text) {
     db.posts.insertOne(post)
 }
 
-function retrievePosts() {
-    const posts = db.posts.getAll()
+function retrievePosts(userId, callback) {
+    validateText(userId, 'userId', true)
+    validateCallback(callback)
 
-    posts.forEach(function (post) {
-        const user = db.users.findOne(user => user.id === post.author)
+    db.users.findOne(user => user.id === userId, (error, user) => {
+        if (error) {
+            callback(error)
 
-        post.author = { id: user.id, username: user.username}
+            return
+        }
+
+        if (!user) {
+            callback(new Error('user not found'))
+
+            return
+        }
+
+        db.posts.getAll((error, posts) => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            let count = 0
+            let errorDetected = false
+
+            posts.forEach(post => {
+                db.users.findOne(user => user.id === post.author, (error, user) => {
+                    if (error) {
+                        callback(error)
+
+                        return
+                    }
+
+                    if (!user) {
+                        callback(new Error('post owner not found'))
+
+                        errorDetected = true
+
+                        return
+                    }
+
+                    post.author = {
+                        id: user.id,
+                        username: user.username
+                    }
+
+                    count++
+
+                    if (!errorDetected && count === posts.length)
+                        callback(null, posts.reverse())
+                })
+            })
+        })
     })
-
-    return posts.reverse()
 }
 
 function removePost(postId) {
@@ -264,7 +300,7 @@ function removePost(postId) {
 
     const post = db.posts.findOne(post => post.id === postId)
 
-    if (!post) throw new Error('postnot found')
+    if (!post) throw new Error('post not found')
 
     if (post.author !== sessionStorage.userId) throw new Error('post does not belong to user')
 
@@ -291,9 +327,6 @@ const logic = {
     loginUser,
     retrieveUser,
     logoutUser,
-    getLoggedInUserId,
-    isUserLoggedIn,
-    cleanUpLoggedInUserId,
 
     retrieveUsersWithStatus,
     sendMessageToUser,

@@ -1,6 +1,8 @@
-import fs from 'fs'
+import { readFile, writeFile } from 'fs'
 
 class Collection {
+    name: string
+
     constructor(name) {
         this.name = name
     }
@@ -8,13 +10,14 @@ class Collection {
     // helpers
 
     _generateId() {
-        return (+parseInt(Math.random() * 10 ** 17).toString()).toString(36)
+        // @ts-ignore
+        return (+((parseInt(Math.random() * 10 ** 17)).toString())).toString(36)
     }
 
     _loadDocuments(callback) {
         if (typeof callback !== 'function') throw new TypeError('callback is not a function')
 
-        fs.readFile(`./data/${this.name}.json`, 'utf8', (error, documentsJSON) => {
+        readFile(`./data/${this.name}.json`, 'utf8', (error, documentsJSON) => {
             if (error) {
                 callback(error)
 
@@ -39,7 +42,7 @@ class Collection {
 
         const documentsJSON = JSON.stringify(documents)
 
-        fs.writeFile(`./data/${this.name}.json`, documentsJSON, error => {
+        writeFile(`./data/${this.name}.json`, documentsJSON, error => {
             if (error) {
                 callback(error)
 
@@ -70,7 +73,7 @@ class Collection {
     }
 
     insertOne(document, callback) {
-        // if (!(document instanceof Object)) throw new TypeError("document is not an object")
+        // if (!(document instanceof Object)) throw new TypeError('document is not an object')
         if (typeof document !== 'object') throw new TypeError('document is not an object')
         // if (!(callback instanceof Function)) throw new TypeError('callback is not a function')
         if (typeof callback !== 'function') throw new TypeError('callback is not a function')
@@ -145,7 +148,7 @@ class Collection {
 
             const index = documents.findIndex(condition)
 
-            if (index > -1 ) {
+            if (index > - 1) {
                 documents.splice(index, 1)
 
                 this._saveDocuments(documents, error => {
@@ -177,6 +180,20 @@ class Collection {
             }
 
             callback(null, documents)
+        })
+    }
+
+    deleteAll(callback) {
+        if (typeof callback !== 'function') throw new TypeError('callback is not a function')
+
+        this._saveDocuments([], error => {
+            if (error) {
+                callback(error)
+
+                return
+            }
+
+            callback(null)
         })
     }
 }
