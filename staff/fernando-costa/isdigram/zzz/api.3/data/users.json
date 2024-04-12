@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Pepe Roni",
+        "birthdate": "2000-01-01",
+        "email": "pepe@roni.com",
+        "password": "123qwe123",
+        "id": "44iqv6czb1k"
+    },
+    {
+        "name": "Xavi",
+        "birthdate": "2000-01-01",
+        "email": "xavi@xavi.com",
+        "username": "xavi",
+        "password": "123qwe123",
+        "status": "online",
+        "id": "a64u72h8hyg"
+    },
+    {
+        "name": "Fula Nito",
+        "birthdate": "2000-01-01",
+        "email": "fula@nito.com",
+        "username": "fulanito",
+        "password": "123qwe123",
+        "status": "online",
+        "id": "bxwol5xgy0o"
+    },
+    {
+        "name": "Fernando",
+        "birthdate": "1989-04-02",
+        "email": "fer@fer.com",
+        "username": "fernando",
+        "password": "123qwe123",
+        "status": "online",
+        "id": "1wvvz2zju5b"
+    }
+]
