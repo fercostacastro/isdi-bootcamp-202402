@@ -1,24 +1,25 @@
 import { validate, errors } from 'com'
 
-function loginUser(email, password) {
-    validate.text(email, 'email', true)
-    validate.password(password)
+function createPost(image, text) {
+    validate.url(image, 'image')
+    if (text)
+        validate.text(text, 'text')
+    validate.token(sessionStorage.token)
 
-    const user = { email, password }
+    const post = { image, text }
 
-    const json = JSON.stringify(user)
+    const json = JSON.stringify(post)
 
-    return fetch(`${import.meta.env.VITE_API_URL}/users/auth`, {
+    return fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: 'POST',
         headers: {
+            Authorization: `Bearer ${sessionStorage.token}`,
             'Content-Type': 'application/json'
         },
         body: json
     })
         .then(res => {
-            if (res.status === 200)
-                return res.json()
-                    .then(token => { sessionStorage.token = token })
+            if (res.status === 201) return
 
             return res.json()
                 .then(body => {
@@ -29,7 +30,6 @@ function loginUser(email, password) {
                     throw new constructor(message)
                 })
         })
-
 }
 
-export default loginUser
+export default createPost

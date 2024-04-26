@@ -10,10 +10,12 @@ Generates a ramdom WOD (workout of the day)
 
 ### Use Cases
 
-- generate a random WOD for 1 hour (including warm-up, exercises and streching)
-- user can select the type of WOD (5 buttons)
-- WOD's can be: benchmarks, WOD, WOD-upper body, WOD-lower body and Endurance
-- register the results on the same page: number of reps and time
+- choose a type of WOD (Benchmarks, normal WOD, Strength and Endurance)
+- start a random WOD for 1 hour (including warm-up, exercises and streching)
+- mark WOD done
+- register the results (number of reps and time by exercise of WOD)
+- list stats (list of WOD results ordered by date descendant)
+
 
 ### UI Design
 
@@ -34,20 +36,50 @@ Generates a ramdom WOD (workout of the day)
 - Express
 - Node
 - Tailwind
-- Mongo
+- MongoDB
 
 ### Data Model
 
 User
-- id (required)
+- id (auto, required)
 - name (string, required)
-- birthdate (date, required)
 - email (string, required)
 - password (string, required)
 
-Exercise
-- id (required)
-- image (string, required)
-- weight (float, optional)
-- status (string, required)
-- result (null, done)
+Wod
+- id (auto, required)
+- name (string, optional)
+- parts ([Part], required)
+
+Part
+- id (auto, required)
+- name (string, required)
+- reps (number, optional)
+- activities ([Activity], required)
+
+Activity
+- id (auto, required)
+- name (string, optional)
+- femaleWeight (number, optional)
+- maleWeight (number, optional)
+- reps (number, optional)
+- time (number, optional)
+
+WodReport
+- id (auto, required)
+- wod (Wod.id, required)
+- user (User.id, required)
+- parts ([PartReport], required)
+
+PartReport
+- id (auto, required)
+- part (Part.id, required)
+- activities ([ActivityReport])
+
+ActivityReport
+- id (auto, required)
+- activity (Activity.id, required)
+- femaleWeight (number, optional)
+- maleWeight (number, optional)
+- reps (number, optional)
+- time (number, optional)
