@@ -1,7 +1,7 @@
 // @ts-nocheck
 import mongoose from 'mongoose'
 
-import { User, Wod } from '.'
+import { User } from '.'
 
 mongoose.connect('mongodb://localhost:27017/project')
     .then(() => User.deleteMany())

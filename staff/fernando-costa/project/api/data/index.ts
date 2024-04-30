@@ -1,8 +1,6 @@
-import mongoose, { ObjectId } from 'mongoose'
+import mongoose from 'mongoose'
 
 const { Schema, model } = mongoose
-
-const { Types: { ObjectId } } = Schema
 
 type UserType = {
     name: string
@@ -59,43 +57,45 @@ const activity = new Schema ({
     }
 })
 
-type WodType = {
-    name?: string
-    description: string
-    category: string
-}
-
-const wod = new Schema ({
-    name: {
-        type: String,
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    }
-})
 
 type PartType = {
     name: string
     reps: number
-    activities: string
+    activities: ActivityType
 }
 
 const part = new Schema ({
     name: {
         type: String
     },
-
+    
     reps: {
         type: Number
     },
-
+    
     activities: {
-        type: String
+        type: [activity]
+    }
+})
+
+type WodType = {
+    name?: string
+    category: string,
+    parts: PartType
+}
+
+const wod = new Schema ({
+    name: {
+        type: String,
+    },
+
+    category: {
+        type: String,
+        required: true
+    },
+
+    parts: {
+        type: [part]
     }
 })
 

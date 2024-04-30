@@ -38,31 +38,40 @@ function Register({ onUserRegistered, onLoginClick }) {
     logger.debug('Register -> render')
 
     return (
-        <main className="bg-black text-white min-h-screen flex items-center justify-center">
+        <main className="bg-white text-black h-screen flex flex-col items-center justify-center">
+
+            <div>
+                <img src="../../public/wod-now.png" alt="logo" className="" />
+            </div>
+
             <div className="max-w-md w-full p-8 rounded-lg shadow-lg">
-                
+
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    <h2 className="text-center">Create an account</h2>
+
                     <div>
                         <label htmlFor="name" className="block">Name</label>
-                        <input type="text" id="name" className="w-full text-black rounded-md border-gray-400 py-2 px-3 focus:outline-none focus:border-blue-500" />
+                        <input type="text" id="name" className="w-full bg-[#DCD6E4] text-black rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
                     </div>
 
                     <div>
                         <label htmlFor="email" className="block">Email</label>
-                        <input type="email" id="email" className="w-full text-black rounded-md border-gray-400 py-2 px-3 focus:outline-none focus:border-blue-500" />
+                        <input type="email" id="email" className="w-full bg-[#DCD6E4] text-black rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
                     </div>
 
                     <div>
                         <label htmlFor="password" className="block">Password</label>
-                        <input type="password" id="password" className="w-full text-black rounded-md border-gray-400 py-2 px-3 focus:outline-none focus:border-blue-500" />
+                        <input type="password" id="password" className="w-full bg-[#DCD6E4] text-black rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 transition-colors duration-300">Register</button>
+                    <button type="submit" className="w-full bg-[#7D84B2] text-black rounded-md py-2 px-4 hover:bg-[#6871b3] transition-colors duration-300">Create an account</button>
+
+                    <p className="text-center">
+                        Already have an account? <a href="#" onClick={handleLoginClick} className="text-blue-500 hover:underline">Login</a>
+                    </p>
                 </form>
 
-                <p className="mt-4 text-center">
-                    <a href="#" onClick={handleLoginClick} className="text-blue-500 hover:underline">Login</a>
-                </p>
+
             </div>
         </main>
     )

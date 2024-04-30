@@ -39,26 +39,39 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
     logger.debug('Login -> render')
 
     return (
-        <main className="bg-black text-white min-h-screen flex items-center justify-center">
+        <main className="bg-white text-black h-screen flex flex-col items-center justify-center">
+
+            <div>
+                <img src="../../public/wod-now.png" alt="logo" className="bg-white" />
+            </div>
+
             <div className="max-w-md w-full p-8 rounded-lg shadow-lg">
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    <h2 className="text-center">Account Login</h2>
+
+                    <p className="text-center">
+                        If you are already a member you
+                        can login with your email
+                        address and password
+                    </p>
+
                     <div>
                         <label htmlFor="email" className="block">Email</label>
-                        <input id="email" type="email" className="w-full text-black rounded-md border-gray-400 py-2 px-3 focus:outline-none focus:border-blue-500" />
+                        <input id="email" type="email" className="w-full bg-[#DCD6E4] text-black rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
                     </div>
 
                     <div>
                         <label htmlFor="password" className="block">Password</label>
-                        <input type="password" id="password" className="w-full text-black rounded-md border-gray-400 py-2 px-3 focus:outline-none focus:border-blue-500" />
+                        <input type="password" id="password" className="w-full bg-[#DCD6E4] text-black rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 transition-colors duration-300">Login</button>
-                </form>
+                    <button type="submit" className="w-full bg-[#7D84B2] text-black rounded-md py-2 px-4 hover:bg-[#6871b3] transition-colors duration-300">Login</button>
 
-                <p className="mt-4 text-center">
-                    <a href="#" onClick={handleRegisterClick} className="text-blue-500 hover:underline">Register</a>
-                </p>
+                    <p className="text-center">
+                        Don’t have an account yet? <a href="#" onClick={handleRegisterClick} className="text-blue-500 hover:underline">Register</a>
+                    </p>
+                </form>
             </div>
         </main>
     )

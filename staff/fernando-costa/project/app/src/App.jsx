@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Context } from './context'
 import Confirm from './components/Confirm'
 import { errors } from 'com'
+import Feedback from './components/Feedback'
 
 const { UnauthorizedError } = errors
 

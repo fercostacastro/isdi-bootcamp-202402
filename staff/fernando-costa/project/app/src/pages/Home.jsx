@@ -32,14 +32,14 @@ function Home({ onUserLoggedOut }) {
 
     const clearView = () => setView(null)
 
-    const handleCreatePostCancelClick = () => clearView()
+    const handleGenerateWodClick = () => clearView()
 
     const handlePostCreated = () => {
         clearView()
         setStamp(Date.now())
     }
 
-    const handleCreatePostClick = () => setView('create-post')
+    const handleGenerateWod = () => setView('create-wod')
 
     const handleLogoutClick = () => {
         try {
@@ -51,40 +51,65 @@ function Home({ onUserLoggedOut }) {
         }
     }
 
-    const handleEditPostCancelClick = () => clearView()
-
-    const handleEditPostClick = post => {
-        setView('edit-post')
-        setPost(post)
-    }
-
-    const handlePostEdited = () => {
-        clearView()
-        setStamp(Date.now())
-        setPost(null)
-    }
-
     logger.debug('Home -> render')
 
     return <>
-        <header className="px-[5vw] fixed top-0 bg-white w-full">
-            {user && <h1>Hello, {user.name}!</h1>}
+        <header className="bg-white h-screen top-0 flex flex-col items-center mt-12">
+            <div>
+                <img src="../../public/wod-now.png" alt="logo" className="bg-white" />
+            </div>
+            <div className="flex items-center mt-3">
+                {user && (
+                    <div className="flex items-center">
+                        <div className="inline-block animate-spin text-[#2C305D]">
+                            &#9881;
+                        </div>
+                        <h1 className="font-bold">
+                            Hello, {user.name}!
+                        </h1>
+                    </div>
+                )}
+            </div>
 
-            <nav>
-                <button onClick={handleLogoutClick}>🚪</button>
-            </nav>
+            <div className="flex justify-center items-center mt-5 cursor-pointer">
+
+                <div class="flex-auto flex flex-col justify-center items-center">
+                    <div class="m-2">
+                        <img src="../../public/benchmarks.png" alt="logo" class="bg-white" />
+                    </div>
+                    <div class="m-2">
+                        <img src="../../public/normalwod.png" alt="logo" class="bg-white" />
+                    </div>
+                    <div class="m-2">
+                        <img src="../../public/strength.png" alt="logo" class="bg-white" />
+                    </div>
+                    <div class="m-2">
+                        <img src="../../public/endurance.png" alt="logo" class="bg-white" />
+                    </div>
+                </div>
+
+            </div>
+
+            {/* <div className="flex justify-center items-center">
+                <div className="flex-auto flex flex-col justify-center items-center">
+                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-10 m-10">Benchmarks</button>
+                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-5 m-10">Normal WOD</button>
+                </div>
+                <div className="flex-auto flex flex-col justify-center items-center">
+                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-10 m-10">Strength</button>
+                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-5 m-10">Endurance</button>
+                </div>
+            </div> */}
+
         </header>
 
-        <main className="my-[50px] px-[5vw]">
-            {/* <Routes>
-                <Route path="/" element={<PostList stamp={stamp} onEditPostClick={handleEditPostClick} />} />
-                <Route path="/profile/:username" element={<Profile />} />
-            </Routes>
 
-            {view === 'create-post' && <CreatePost onCancelClick={handleCreatePostCancelClick} onPostCreated={handlePostCreated} />}
+        <footer className="fixed bottom-0 w-full h-[50px] flex justify-center items-center p-[10px] box-border bg-white mb-[20px]">
 
-            {view === 'edit-post' && <EditPost post={post} onCancelClick={handleEditPostCancelClick} onPostEdited={handlePostEdited} />} */}
-        </main>
+            <button onClick={handleGenerateWodClick}><img src="../../public/update.png" alt="generate another WOD" /></button>
+
+            <button onClick={handleLogoutClick}><img src="../../public/exit.png" alt="lougout " /></button>
+        </footer>
     </>
 }
 
