@@ -17,7 +17,7 @@ describe('retrieveUser', () => {
 
     it('retrieves existing user', () =>
         User.deleteMany()
-            .then(() => User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' }))
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
             .then(user =>
                 User.create({ name: 'Cala Baza', email: 'cala@baza.com', password: '123qwe123' })
                     .then(user2 => logic.retrieveUser(user.id, user2.id))
@@ -33,7 +33,7 @@ describe('retrieveUser', () => {
         User.deleteMany()
             .then(() => User.create({ name: 'Pepito Grillo', email: 'pepito@grillo.com', password: '123qwe123' }))
             .then(user =>
-                User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' })
+                User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' })
                     .then(user2 => logic.retrieveUser(new ObjectId().toString(), user2.id))
                     .catch(error => {
                         expect(error).to.be.instanceOf(NotFoundError)
@@ -44,7 +44,7 @@ describe('retrieveUser', () => {
 
     it('does no retrieve a non-existing target user', () =>
         User.deleteMany()
-            .then(() => User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' }))
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
             .then(user =>
                 User.create({ name: 'Pepe Roni', email: 'pepe@roni.com', password: '123qwe123' })
                     .then(user2 => logic.retrieveUser(user.id, new ObjectId().toString()))
@@ -55,7 +55,32 @@ describe('retrieveUser', () => {
             )
     )
 
-    // TODO test all methods
+    it('retrieve a user with a valid ObjectId', () =>
+        User.deleteMany()
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123', ObjectId: '662f6169a154d9d50432834e' }))
+            .then(user =>
+                User.create({ name: 'Edna Costa', email: 'edna@costa.com', password: '123qwe123', ObjectId: '662f6169a154d9d50432834f' })
+                    .then(user2 => logic.retrieveUser(user.id, user2.id))
+                    .catch(error => {
+                        expect(error).to.be.instanceOf(NotFoundError)
+                        expect(error.message).to.equal('ID is not valid')
+                    })
+            )
+    )
 
-    after(() => mongoose.disconnect())
+    it('does no retrieve an existing user with no valid ObjectId', () =>
+        User.deleteMany()
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123', ObjectId: '662f6169a154d9d504328350' }))
+            .then(user =>
+                User.create({ name: 'Edna Costa', email: 'edna@costa.com', password: '123qwe123', ObjectId: '662f6169a154d9d504' })
+                    .then(user2 => logic.retrieveUser(user.id, user2.id))
+                    .catch(error => {
+                        expect(error).to.be.instanceOf(NotFoundError)
+                        expect(error.message).to.equal('ID is not valid')
+                    })
+            )
+
+    )
 })
+
+after(() => mongoose.disconnect())

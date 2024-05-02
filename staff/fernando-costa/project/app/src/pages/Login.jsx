@@ -42,10 +42,10 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         <main className="bg-white text-black h-screen flex flex-col items-center justify-center">
 
             <div>
-                <img src="../../public/wod-now.png" alt="logo" className="bg-white" />
+                <img src="../../public/wod-now.png" alt="logo" />
             </div>
 
-            <div className="max-w-md w-full p-8 rounded-lg shadow-lg">
+            <div className="max-w-md w-full p-8 rounded-lg">
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <h2 className="text-center">Account Login</h2>

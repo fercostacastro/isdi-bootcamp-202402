@@ -16,9 +16,9 @@ describe('authenticateUser', () => {
 
     it('succeeds on existing user and correct credentials', () =>
         User.deleteMany()
-            .then(() => User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' }))
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
             .then(user =>
-                logic.authenticateUser('fer@fer.com', '123qwe123')
+                logic.authenticateUser('fer@costa.com', '123qwe123')
                     .then(userId => {
                         expect(userId).to.be.a('string')
                         expect(userId).to.equal(user.id)
@@ -28,8 +28,8 @@ describe('authenticateUser', () => {
 
     it('fails on existing user and incorrect password', () =>
         User.deleteMany()
-            .then(() => User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('fer@fer.com', '123qwe123qwe'))
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
+            .then(() => logic.authenticateUser('fer@costa.com', '123qwe123qwe'))
             .catch(error => {
                 expect(error).to.be.instanceOf(CredentialsError)
                 expect(error.message).to.equal('wrong password')
@@ -38,15 +38,33 @@ describe('authenticateUser', () => {
 
     it('fails on existing user and incorrect email', () =>
         User.deleteMany()
-            .then(() => User.create({ name: 'Fernando', email: 'fer@fer2.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('fer@fer2.com', '123qwe123'))
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa2.com', password: '123qwe123' }))
+            .then(() => logic.authenticateUser('fer@costa2.com', '123qwe123'))
             .catch(error => {
                 expect(error).to.be.instanceOf(NotFoundError)
                 expect(error.message).to.equal('user not found')
             })
     )
 
-    // TODO add other unhappy test cases
+    it('fails existing user and blank or no valid email format', () =>
+        User.deleteMany()
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
+            .then(() => logic.authenticateUser('costaaa@', '123qwe123'))
+            .catch(error => {
+                expect(error).to.be.instanceOf(NotFoundError)
+                expect(error.message).to.equal('email in blank')
+            })
+    )
+
+    it('fails existing user and blank or no valid password format', () =>
+        User.deleteMany()
+            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
+            .then(() => logic.authenticateUser('fer@costa.com', '.-023&&&'))
+            .catch(error => {
+                expect(error).to.be.instanceOf(NotFoundError)
+                expect(error.message).to.equal('password in blank')
+            })
+    )
 
     after(() => mongoose.disconnect())
 })

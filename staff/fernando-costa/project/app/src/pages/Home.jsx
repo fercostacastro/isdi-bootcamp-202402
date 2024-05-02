@@ -53,64 +53,40 @@ function Home({ onUserLoggedOut }) {
 
     logger.debug('Home -> render')
 
-    return <>
-        <header className="bg-white h-screen top-0 flex flex-col items-center mt-12">
-            <div>
-                <img src="../../public/wod-now.png" alt="logo" className="bg-white" />
-            </div>
-            <div className="flex items-center mt-3">
-                {user && (
-                    <div className="flex items-center">
-                        <div className="inline-block animate-spin text-[#2C305D]">
-                            &#9881;
+    return (
+        <>
+            <header className="bg-[#F6EEEE] min-h-screen top-0 pt-12 flex flex-col items-center">
+                <div>
+                    <img src="../../public/wod-now-grey.png" alt="logo" />
+                </div>
+                <div className="flex items-center mt-8 ">
+                    {user && (
+                        <div className="flex items-center">
+                            <div className="inline-block animate-spin text-[#2C305D]">
+                                &#9881;
+                            </div>
+                            <h1 className="font-bold">
+                                Hello, {user.name}!
+                            </h1>
                         </div>
-                        <h1 className="font-bold">
-                            Hello, {user.name}!
-                        </h1>
-                    </div>
-                )}
-            </div>
-
-            <div className="flex justify-center items-center mt-5 cursor-pointer">
-
-                <div class="flex-auto flex flex-col justify-center items-center">
-                    <div class="m-2">
-                        <img src="../../public/benchmarks.png" alt="logo" class="bg-white" />
-                    </div>
-                    <div class="m-2">
-                        <img src="../../public/normalwod.png" alt="logo" class="bg-white" />
-                    </div>
-                    <div class="m-2">
-                        <img src="../../public/strength.png" alt="logo" class="bg-white" />
-                    </div>
-                    <div class="m-2">
-                        <img src="../../public/endurance.png" alt="logo" class="bg-white" />
-                    </div>
+                    )}
                 </div>
 
-            </div>
-
-            {/* <div className="flex justify-center items-center">
-                <div className="flex-auto flex flex-col justify-center items-center">
-                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-10 m-10">Benchmarks</button>
-                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-5 m-10">Normal WOD</button>
+                <div className="grid grid-cols-2 gap-4 mt-12">
+                    <button id="benchmarks-button" className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Benchmarks</button>
+                    <button id="normal-wod-button" className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Normal WOD</button>
+                    <button id="strength-button" className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Strength</button>
+                    <button id="endurance-button" className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Endurance</button>
                 </div>
-                <div className="flex-auto flex flex-col justify-center items-center">
-                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-10 m-10">Strength</button>
-                    <button className="w-132 h-15 bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded mt-5 m-10">Endurance</button>
-                </div>
-            </div> */}
 
-        </header>
+                <div id="wod" className="text-center mt-10"></div>
+            </header >
 
-
-        <footer className="fixed bottom-0 w-full h-[50px] flex justify-center items-center p-[10px] box-border bg-white mb-[20px]">
-
-            <button onClick={handleGenerateWodClick}><img src="../../public/update.png" alt="generate another WOD" /></button>
-
-            <button onClick={handleLogoutClick}><img src="../../public/exit.png" alt="lougout " /></button>
-        </footer>
-    </>
+            <footer className="fixed bottom-0 w-full h-[100px] flex justify-center items-center p-[10px] box-border bg-[#F6EEEE] mb-[20px]">
+                <button onClick={handleGenerateWodClick} className="mr-5"><img src="../../public/update-grey.png" alt="generate another WOD" /></button>
+                <button onClick={handleLogoutClick} className="ml-5"><img src="../../public/exit-grey.png" alt="logout" /></button>
+            </footer>
+        </>
+    )
 }
-
 export default Home
