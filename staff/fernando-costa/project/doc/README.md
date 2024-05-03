@@ -6,6 +6,10 @@ Generates a ramdom WOD (workout of the day)
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3J1cDE1cTRncWt5N3R5dXp4OTZneThscjB5ZWdncjhyZnA4Nm9jZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/iw3QWgT77aC1G/giphy.gif)
 
+## schema
+
+![](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=dGl0bGUgV29kIE5vdwoKOiktPkFwcDogY2hvb3NlIGNhdGVnb3J5CkFwcC0-bG9naWM6IHJldHJpZXZlUmFuZG9tV29kKAAfCCkKAB4FLT5BUEk6IEdFVCAvd29kcy86AEAIL3IALwUgPHRva2VuPgpBUEkAUAcnAEQUdXNlcklkLAB-CQBZByctPlVzZXI6IGZpbmRCeUkAIQgpClVzZXIARwp1c2VyACkJAF4IdmFsaWRhdGUAEA5Xb2Q6IGNvdW50RG9jdW1lbnRzKHsAgXYIfSkKV29kAIEfCgAjBQBIEWp1bXAgPSBNYXRoLgCBYQYoKSAqAB4PAGMFZmluZE9uZSh7AIJXCSB9KS5za2lwKGp1bXAAXw93b2QAgTQRc2FuaXRpemUAggcJAIJsBXdvZCcAgkgLOiAyMDAADwYAgw8IcHAAHghwcACDYwdyZW5kZXIK&s=default)
+
 ## Functional Description
 
 ### Use Cases

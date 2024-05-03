@@ -102,14 +102,17 @@ const wod = new Schema ({
 
 const User = model<UserType>('User', user)
 const Activity = model<ActivityType>('Activity', activity)
+const Part = model<PartType>('Part', part)
 const Wod = model<WodType>('Wod', wod)
 
 
 export {
     UserType,
     User,
+    PartType,
+    Part,
     ActivityType,
     Activity,
     WodType,
-    Wod,
+    Wod
 }

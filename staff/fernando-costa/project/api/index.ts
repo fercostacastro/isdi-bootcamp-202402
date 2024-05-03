@@ -149,85 +149,45 @@ mongoose.connect(MONGODB_URL!)
             }
         })
 
-        // api.get('/posts', (req, res) => {
-        //     try {
-        //         const { authorization } = req.headers
+        api.get('/wods/:category/random', (req, res) => {
+            try {
+                const { authorization } = req.headers
 
-        //         const token = authorization.slice(7)
+                const token = authorization.slice(7)
 
-        //         const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET)
 
-        //         logic.retrievePosts(userId as string)
-        //             .then(posts => res.json(posts))
-        //             .catch(error => {
-        //                 if (error instanceof SystemError) {
-        //                     logger.error(error.message)
+                const { category } = req.params
 
-        //                     res.status(500).json({ error: error.constructor.name, message: error.message })
-        //                 } else if (error instanceof NotFoundError) {
-        //                     logger.warn(error.message)
+                logic.retrieveRandomWod(userId as string, category)
+                    .then(wod => res.json(wod))
+                    .catch(error => {
+                        if (error instanceof SystemError) {
+                            logger.error(error.message)
 
-        //                     res.status(404).json({ error: error.constructor.name, message: error.message })
-        //                 }
-        //             })
-        //     } catch (error) {
-        //         if (error instanceof TypeError || error instanceof ContentError) {
-        //             logger.warn(error.message)
+                            res.status(500).json({ error: error.constructor.name, message: error.message })
+                        } else if (error instanceof NotFoundError) {
+                            logger.warn(error.message)
 
-        //             res.status(406).json({ error: error.constructor.name, message: error.message })
-        //         } else if (error instanceof TokenExpiredError) {
-        //             logger.warn(error.message)
+                            res.status(404).json({ error: error.constructor.name, message: error.message })
+                        }
+                    })
+            } catch (error) {
+                if (error instanceof TypeError || error instanceof ContentError) {
+                    logger.warn(error.message)
 
-        //             res.status(498).json({ error: UnauthorizedError.name, message: 'session expired' })
-        //         } else {
-        //             logger.warn(error.message)
+                    res.status(406).json({ error: error.constructor.name, message: error.message })
+                } else if (error instanceof TokenExpiredError) {
+                    logger.warn(error.message)
 
-        //             res.status(500).json({ error: SystemError.name, message: error.message })
-        //         }
-        //     }
-        // })
+                    res.status(498).json({ error: UnauthorizedError.name, message: 'session expired' })
+                } else {
+                    logger.warn(error.message)
 
-        // api.post('/posts', jsonBodyParser, (req, res) => {
-        //     try {
-        //         const { authorization } = req.headers
-
-        //         const token = authorization.slice(7)
-
-        //         const { sub: userId } = jwt.verify(token, JWT_SECRET)
-
-        //         const { image, text } = req.body
-
-        //         logic.createPost(userId as string, image, text)
-        //             .then(() => res.status(201).send())
-        //             .catch(error => {
-        //                 if (error instanceof SystemError) {
-        //                     logger.error(error.message)
-
-        //                     res.status(500).json({ error: error.constructor.name, message: error.message })
-        //                 } else if (error instanceof NotFoundError) {
-        //                     logger.warn(error.message)
-
-        //                     res.status(404).json({ error: error.constructor.name, message: error.message })
-        //                 }
-        //             })
-        //     } catch (error) {
-        //         if (error instanceof TypeError || error instanceof ContentError) {
-        //             logger.warn(error.message)
-
-        //             res.status(406).json({ error: error.constructor.name, message: error.message })
-        //         } else if (error instanceof TokenExpiredError) {
-        //             logger.warn(error.message)
-
-        //             res.status(498).json({ error: UnauthorizedError.name, message: 'session expired' })
-        //         } else {
-        //             logger.warn(error.message)
-
-        //             res.status(500).json({ error: SystemError.name, message: error.message })
-        //         }
-        //     }
-        // })
-
-        // ...
+                    res.status(500).json({ error: SystemError.name, message: error.message })
+                }
+            }
+        })
 
         api.listen(PORT, () => logger.info(`API listening on port ${PORT}`))
     })

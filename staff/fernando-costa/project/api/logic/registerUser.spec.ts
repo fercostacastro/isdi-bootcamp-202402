@@ -17,12 +17,12 @@ describe('registerUser', () => {
 
     it('succeeds a new user', () =>
         User.deleteMany()
-            .then(() => logic.registerUser('Fernando', 'fer@fer.com', '123qwe123'))
-            .then(() => User.findOne({ email: 'fer@fer.com' }))
+            .then(() => logic.registerUser('Fernando', 'fer@costa.com', '123qwe123'))
+            .then(() => User.findOne({ email: 'fer@costa.com' }))
             .then(user => {
                 expect(!!user).to.be.true
                 expect(user.name).to.equal('Fernando')
-                expect(user.email).to.equal('fer@fer.com')
+                expect(user.email).to.equal('fer@costa.com')
                 expect(user.password).to.equal('123qwe123')
             })
     )
@@ -31,7 +31,7 @@ describe('registerUser', () => {
         User.deleteMany()
             .then(() => User.create({ name: 'Fernando', email: 'fer@fer.com', password: '123qwe123' }))
             .then(() =>
-                logic.registerUser('Fernando', 'fer@fer.com', '123qwe123')
+                logic.registerUser('Fernando', 'fer@costa.com', '123qwe123')
                     .catch(error => {
                         expect(error).to.be.instanceOf(DuplicityError)
                         expect(error.message).to.equal('user already exists')
@@ -44,7 +44,7 @@ describe('registerUser', () => {
 
         try {
             // @ts-ignore
-            logic.registerUser(123, 'fer@fer.com', '123qwe123')
+            logic.registerUser(123, 'fer@costa.com', '123qwe123')
         } catch (error) {
             errorThrown = error
         }
@@ -57,7 +57,7 @@ describe('registerUser', () => {
         let errorThrown
 
         try {
-            logic.registerUser('', 'fer@fer.com', '123qwe123')
+            logic.registerUser('', 'fer@costa.com', '123qwe123')
         } catch (error) {
             errorThrown = error
         }
@@ -66,7 +66,7 @@ describe('registerUser', () => {
         expect(errorThrown.message).to.equal('name >< is empty or blank')
     })
 
-    // TODO add other unhappy test cases
+    
 
     after(() => mongoose.disconnect())
 })

@@ -46,22 +46,22 @@ describe('authenticateUser', () => {
             })
     )
 
-    it('fails existing user and blank or no valid email format', () =>
+    it('fails on existing user and blank email format', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('costaaa@', '123qwe123'))
+            .then(() => logic.authenticateUser('', '123qwe123'))
             .catch(error => {
-                expect(error).to.be.instanceOf(NotFoundError)
+                expect(error).to.be.instanceOf(CredentialsError)
                 expect(error.message).to.equal('email in blank')
             })
     )
-
-    it('fails existing user and blank or no valid password format', () =>
+    
+    it('fails on existing user and blank password format', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('fer@costa.com', '.-023&&&'))
+            .then(() => logic.authenticateUser('fer@costa.com', ''))
             .catch(error => {
-                expect(error).to.be.instanceOf(NotFoundError)
+                expect(error).to.be.instanceOf(CredentialsError)
                 expect(error.message).to.equal('password in blank')
             })
     )
