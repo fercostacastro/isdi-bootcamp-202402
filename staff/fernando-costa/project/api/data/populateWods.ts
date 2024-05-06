@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost:27017/project')
     .then(() =>
         Promise.all([
             Wod.create({
-                category: 'Normal Wod', parts: [
+                category: 'normalwod', parts: [
                     new Part({
                         name: '4 SERIES', reps: 4, activities: [
                             new Activity({ name: '20" MAX REPS STRICT WALL FACING HSPU', time: '20"' }),
@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                name: 'Angie', category: 'BenchMarks', parts: [
+                name: 'angie', category: 'benchmarks', parts: [
                     new Part({
                         name: 'FOR TIME, YOU MUST COMPLETE EACH EXERCISE BEFORE MOVING ON TO THE NEXT', reps: 'as many reps as possible', activities: [
                             new Activity({ name: '100 PULL-UPS', reps: 100 }),
@@ -38,7 +38,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Strength', parts: [
+                category: 'strength', parts: [
                     new Part({
                         name: '2 SERIES', activities: [
                             new Activity({ name: '10 BACK SQUATS - 75% RM', reps: 10 }),
@@ -60,7 +60,7 @@ mongoose.connect('mongodb://localhost:27017/project')
 
             }),
             Wod.create({
-                category: 'Endurance', parts: [
+                category: 'endurance', parts: [
                     new Part({
                         name: '2 ROUNDS', activities: [
                             new Activity({ name: '1KM RUN' }),
@@ -72,7 +72,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Normal Wod', parts: [
+                category: 'normalwod', parts: [
                     new Part({
                         name: 'FROM 0 TO 15\'', activities: [
                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -90,7 +90,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                name: 'Barbara', category: 'BenchMarks', parts: [
+                name: 'barbara', category: 'benchmarks', parts: [
                     new Part({
                         name: '5 ROUNDS', activities: [
                             new Activity({ name: '20 PULL-UPS' }),
@@ -103,7 +103,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Strength', parts: [
+                category: 'strength', parts: [
                     new Part({
                         name: '2 ROUNDS FOR QUALITY', activities: [
                             new Activity({ name: '6 DEFICIT HSPU', reps: 6 }),
@@ -124,7 +124,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Endurance', parts: [
+                category: 'endurance', parts: [
                     new Part({
                         name: 'AMRAP 45\' (AS MANY REPS AS POSSIBLE)', activities: [
                             new Activity({ name: '50 MOUNTAIN CLIMBERS', REPS: 50 }),
@@ -137,7 +137,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Normal Wod', parts: [
+                category: 'normalwod', parts: [
                     new Part({
                         name: 'TIME CAP 45\'', activities: [
                             new Activity({ name: '50 V-UPS', reps: 50 }),
@@ -152,7 +152,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                name: 'Murph', category: 'BenchMarks', parts: [
+                name: 'mmurph', category: 'benchmarks', parts: [
                     new Part({
                         name: 'FOR TIME. YOU CAN DIVIDE THE EXERCISE AS YOU WANT', activities: [
                             new Activity({ name: '1600M RACE (1 MILE)' }),
@@ -165,7 +165,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Strength', parts: [
+                category: 'strength', parts: [
                     new Part({
                         name: '3 ROUNDS', activities: [
                             new Activity({ name: '8 FRONT SQUAT – 60% RM', reps: 8 }),
@@ -183,7 +183,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                 ]
             }),
             Wod.create({
-                category: 'Endurance', parts: [
+                category: 'endurance', parts: [
                     new Part({
                         name: 'TIME CAP 45\'', activities: [
                             new Activity({ name: '1000M ROW' }),

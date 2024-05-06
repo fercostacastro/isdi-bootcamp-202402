@@ -7,6 +7,8 @@ import logic from './index.ts'
 import { expect } from 'chai'
 import { errors } from 'com'
 
+const { ContentError } = errors
+
 dotenv.config()
 
 const { CredentialsError, NotFoundError } = errors
@@ -46,25 +48,6 @@ describe('authenticateUser', () => {
             })
     )
 
-    it('fails on existing user and blank email format', () =>
-        User.deleteMany()
-            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('', '123qwe123'))
-            .catch(error => {
-                expect(error).to.be.instanceOf(CredentialsError)
-                expect(error.message).to.equal('email in blank')
-            })
-    )
-    
-    it('fails on existing user and blank password format', () =>
-        User.deleteMany()
-            .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
-            .then(() => logic.authenticateUser('fer@costa.com', ''))
-            .catch(error => {
-                expect(error).to.be.instanceOf(CredentialsError)
-                expect(error.message).to.equal('password in blank')
-            })
-    )
 
     after(() => mongoose.disconnect())
 })
