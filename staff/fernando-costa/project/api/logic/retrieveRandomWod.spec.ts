@@ -1,16 +1,10 @@
 import dotenv from 'dotenv'
-
 import mongoose from 'mongoose'
 import logic from './index.ts'
 import { expect } from 'chai'
-import { errors } from 'com'
-
 import { Activity, Part, User, Wod } from '../data/index.ts'
 
-
 dotenv.config()
-
-const { CredentialsError, NotFoundError } = errors
 
 describe('retrieveWod', () => {
     before(() => mongoose.connect(process.env.MONGODB_TEST_URL))
@@ -25,7 +19,7 @@ describe('retrieveWod', () => {
                     .then((user) =>
                         Promise.all([
                             Wod.create({
-                                name: 'Kass', category: 'Strength', parts:
+                                name: 'Kass', category: 'strength', parts:
                                     new Part({
                                         name: '5 ROUNDS', reps: 7, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -35,7 +29,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Strength', parts:
+                                category: 'strength', parts:
                                     new Part({
                                         name: 'FYS', reps: 2, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 12 }),
@@ -44,7 +38,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Normal WOD', parts:
+                                category: 'normalwod', parts:
                                     new Part({
                                         name: ' YNCM', reps: 7, activities: [
                                             new Activity({ name: '2 ROUNDS FOR TIME', reps: 8 }),
@@ -53,7 +47,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kess', category: 'Endurance', parts:
+                                name: 'Kess', category: 'endurance', parts:
                                     new Part({
                                         name: '10 ROUNDS', reps: 10, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -63,7 +57,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kuss', category: 'Endurance', parts:
+                                name: 'Kuss', category: 'endurance', parts:
                                     new Part({
                                         name: '8 ROUNDS', reps: 9, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -73,7 +67,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kiss', category: 'Benchmark', parts:
+                                name: 'Kiss', category: 'benchmarks', parts:
                                     new Part({
                                         name: '3 ROUNDS', reps: 5, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 6 }),
@@ -85,9 +79,9 @@ describe('retrieveWod', () => {
 
                         ])
                             .then(() => {
-                                return logic.retrieveRandomWod(user.id, 'Strength')
+                                return logic.retrieveRandomWod(user.id, 'strength')
                                     .then(wod => {
-                                        expect(wod.category).to.equal('Strength')
+                                        expect(wod.category).to.equal('strength')
                                     })
                             })
                     )
@@ -104,7 +98,7 @@ describe('retrieveWod', () => {
                     .then((user) =>
                         Promise.all([
                             Wod.create({
-                                name: 'Kass', category: 'Strength', parts:
+                                name: 'Kass', category: 'strength', parts:
                                     new Part({
                                         name: '5 ROUNDS', reps: 7, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -114,7 +108,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Strength', parts:
+                                category: 'strength', parts:
                                     new Part({
                                         name: 'FYS', reps: 2, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 12 }),
@@ -123,7 +117,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Normal WOD', parts:
+                                category: 'normalwod', parts:
                                     new Part({
                                         name: ' YNCM', reps: 7, activities: [
                                             new Activity({ name: '2 ROUNDS FOR TIME', reps: 8 }),
@@ -132,7 +126,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kess', category: 'Endurance', parts:
+                                name: 'Kess', category: 'endurance', parts:
                                     new Part({
                                         name: '10 ROUNDS', reps: 10, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -142,7 +136,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kiss', category: 'Endurance', parts:
+                                name: 'Kiss', category: 'endurance', parts:
                                     new Part({
                                         name: '8 ROUNDS', reps: 9, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -152,7 +146,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Koss', category: 'Benchmark', parts:
+                                name: 'Koss', category: 'benchmarks', parts:
                                     new Part({
                                         name: '3 ROUNDS', reps: 5, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 6 }),
@@ -164,9 +158,9 @@ describe('retrieveWod', () => {
 
                         ])
                             .then(() => {
-                                return logic.retrieveRandomWod(user.id, 'Endurance')
+                                return logic.retrieveRandomWod(user.id, 'endurance')
                                     .then(wod => {
-                                        expect(wod.category).to.equal('Endurance')
+                                        expect(wod.category).to.equal('endurance')
                                     })
                             })
                     )
@@ -183,7 +177,7 @@ describe('retrieveWod', () => {
                     .then((user) =>
                         Promise.all([
                             Wod.create({
-                                name: 'Kass', category: 'Strength', parts:
+                                name: 'Kass', category: 'strength', parts:
                                     new Part({
                                         name: '5 ROUNDS', reps: 7, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -193,7 +187,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Strength', parts:
+                                category: 'strength', parts:
                                     new Part({
                                         name: 'FYS', reps: 2, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 12 }),
@@ -202,7 +196,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Normal WOD', parts:
+                                category: 'normalwod', parts:
                                     new Part({
                                         name: ' YNCM', reps: 7, activities: [
                                             new Activity({ name: '2 ROUNDS FOR TIME', reps: 8 }),
@@ -211,7 +205,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kess', category: 'Endurance', parts:
+                                name: 'Kess', category: 'endurance', parts:
                                     new Part({
                                         name: '10 ROUNDS', reps: 10, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -221,7 +215,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kiss', category: 'Endurance', parts:
+                                name: 'Kiss', category: 'endurance', parts:
                                     new Part({
                                         name: '8 ROUNDS', reps: 9, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -231,7 +225,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Koss', category: 'Benchmark', parts:
+                                name: 'Koss', category: 'benchmarks', parts:
                                     new Part({
                                         name: '3 ROUNDS', reps: 5, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 6 }),
@@ -243,9 +237,9 @@ describe('retrieveWod', () => {
 
                         ])
                             .then(() => {
-                                return logic.retrieveRandomWod(user.id, 'Benchmark')
+                                return logic.retrieveRandomWod(user.id, 'benchmarks')
                                     .then(wod => {
-                                        expect(wod.category).to.equal('Benchmark')
+                                        expect(wod.category).to.equal('benchmarks')
                                     })
                             })
                     )
@@ -262,7 +256,7 @@ describe('retrieveWod', () => {
                     .then((user) =>
                         Promise.all([
                             Wod.create({
-                                name: 'Kass', category: 'Strength', parts:
+                                name: 'Kass', category: 'strength', parts:
                                     new Part({
                                         name: '5 ROUNDS', reps: 7, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -272,7 +266,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Strength', parts:
+                                category: 'strength', parts:
                                     new Part({
                                         name: 'FYS', reps: 2, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 12 }),
@@ -281,7 +275,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                category: 'Normal WOD', parts:
+                                category: 'normalwod', parts:
                                     new Part({
                                         name: ' YNCM', reps: 7, activities: [
                                             new Activity({ name: '2 ROUNDS FOR TIME', reps: 8 }),
@@ -290,7 +284,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kess', category: 'Endurance', parts:
+                                name: 'Kess', category: 'endurance', parts:
                                     new Part({
                                         name: '10 ROUNDS', reps: 10, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -300,7 +294,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Kiss', category: 'Endurance', parts:
+                                name: 'Kiss', category: 'endurance', parts:
                                     new Part({
                                         name: '8 ROUNDS', reps: 9, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
@@ -310,7 +304,7 @@ describe('retrieveWod', () => {
                                     })
                             }),
                             Wod.create({
-                                name: 'Koss', category: 'Benchmark', parts:
+                                name: 'Koss', category: 'benchmarks', parts:
                                     new Part({
                                         name: '3 ROUNDS', reps: 5, activities: [
                                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 6 }),
@@ -322,9 +316,9 @@ describe('retrieveWod', () => {
 
                         ])
                             .then(() => {
-                                return logic.retrieveRandomWod(user.id, 'Normal WOD')
+                                return logic.retrieveRandomWod(user.id, 'normalwod')
                                     .then(wod => {
-                                        expect(wod.category).to.equal('Normal WOD')
+                                        expect(wod.category).to.equal('normalwod')
                                     })
                             })
                     )

@@ -61,7 +61,7 @@ const activity = new Schema ({
 type PartType = {
     name: string
     reps: number
-    activities: ActivityType
+    activities: ActivityType[]
 }
 
 const part = new Schema ({
@@ -79,9 +79,9 @@ const part = new Schema ({
 })
 
 type WodType = {
-    name?: string
     category: string,
-    parts: PartType
+    name?: string
+    parts: PartType[]
 }
 
 const wod = new Schema ({

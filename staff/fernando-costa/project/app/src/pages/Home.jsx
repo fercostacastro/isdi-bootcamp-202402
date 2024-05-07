@@ -22,9 +22,11 @@ const Home = ({ onUserLoggedOut }) => {
 
     useEffect(() => {
         try {
-            logic.retrieveRandomWod(wodCategory)
-                .then(setWod)
-                .catch(error => showFeedback(error, 'error'))
+            if (wodCategory) {
+                logic.retrieveRandomWod(wodCategory)
+                    .then(wod => setWod(wod))
+                    .catch(error => showFeedback(error, 'error'))
+            }
         } catch (error) {
             showFeedback(error)
         }
@@ -46,6 +48,7 @@ const Home = ({ onUserLoggedOut }) => {
 
     const restartCategory = () => {
         setWodCategory(null)
+        setWod(null)
     }
 
     logger.debug('Home -> render')
@@ -57,7 +60,7 @@ const Home = ({ onUserLoggedOut }) => {
             <header>
                 <div className="bg-[#F6EEEE] top-0 pt-12 flex flex-col items-center">
                     <div>
-                        <img src="../../public/wod-now-grey.png" alt="logo" />
+                        <img src="/wod-now-grey.png" alt="logo" />
                     </div>
                     <div className="flex items-center mt-8 ">
                         {user && (
@@ -73,21 +76,44 @@ const Home = ({ onUserLoggedOut }) => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 mt-12">
-                        <button id="benchmarks-button" onClick={() => selectCategory('BenchMarks')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Benchmarks</button>
-                        <button id="normal-wod-button" onClick={() => selectCategory('Normal Wod')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Normal WOD</button>
-                        <button id="strength-button" onClick={() => selectCategory('Strength')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Strength</button>
-                        <button id="endurance-button" onClick={() => selectCategory('Endurance')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Endurance</button>
+                        <button id="benchmarks-button" onClick={() => selectCategory('benchmarks')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Benchmarks</button>
+                        <button id="normal-wod-button" onClick={() => selectCategory('normal')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Normal</button>
+                        <button id="strength-button" onClick={() => selectCategory('strength')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Strength</button>
+                        <button id="endurance-button" onClick={() => selectCategory('endurance')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Endurance</button>
                     </div>
 
                     <div className="text-center mt-10"></div>
                 </div>
             </header>
-            
-                <div className="bg-white"></div>
+
+            <article className="bg-white">
+                {wod && (
+                    <div className="pt-4 pl-5">
+                        <h2>{wod.category.toUpperCase()}</h2>
+                        <p>{wod.name?.toUpperCase()}</p>
+                        <br></br>
+                        <ul>
+                            {wod.parts.map((part) => (
+                                <li key={part.id}>
+                                    <h3>{part.name}</h3>
+                                    <p>Reps: {part.reps}</p>
+                                    <ul>
+                                        {part.activities.map((activity) => (
+                                            <li key={activity.id}>
+                                                <p>{activity.name}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </article>
 
             <footer className="fixed bottom-0 w-full h-[100px] flex justify-center items-center p-[10px] box-border bg-[#F6EEEE]">
-                <button onClick={restartCategory} className="mr-5"><img src="../../public/update-grey.png" alt="restart WOD" /></button>
-                <button onClick={handleLogoutClick} className="ml-5"><img src="../../public/exit-grey.png" alt="logout" /></button>
+                <button onClick={restartCategory} className="mr-5"><img src="/update-grey.png" alt="restart WOD" /></button>
+                <button onClick={handleLogoutClick} className="ml-5"><img src="/exit-grey.png" alt="logout" /></button>
             </footer>
         </>
     )

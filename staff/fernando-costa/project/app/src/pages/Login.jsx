@@ -42,7 +42,7 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         <main className="bg-white text-black h-screen flex flex-col items-center justify-center">
 
             <div>
-                <img src="../../public/wod-now.png" alt="logo" />
+                <img src="/wod-now.png" alt="logo" />
             </div>
 
             <div className="max-w-md w-full p-8 rounded-lg">
