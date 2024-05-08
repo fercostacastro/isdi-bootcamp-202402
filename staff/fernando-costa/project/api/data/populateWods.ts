@@ -12,9 +12,9 @@ mongoose.connect('mongodb://localhost:27017/project')
                     new Part({
                         name: '4 SERIES', reps: 4, activities: [
                             new Activity({ name: '20" MAX REPS STRICT WALL FACING HSPU', time: '20"' }),
-                            new Activity({ name: 'REST 1\'', time: '1\'' }),
+                            new Activity({ name: 'rest 1\'', time: '1\'' }),
                             new Activity({ name: '20" MAX REPS STRICT HSPU', time: '20"' }),
-                            new Activity({ name: 'REST 1\'', time: '1\'' })
+                            new Activity({ name: 'rest 1\'', time: '1\'' })
                         ]
                     }),
                     new Part({
@@ -43,17 +43,17 @@ mongoose.connect('mongodb://localhost:27017/project')
                         name: '2 SERIES', activities: [
                             new Activity({ name: '10 BACK SQUATS - 75% RM', reps: 10 }),
                             new Activity({ name: '10 BACK SQUATS - 50% RM', reps: 10 }),
-                            new Activity({ name: 'REST 1\'', time: '1\'' })
+                            new Activity({ name: 'rest 1\'', time: '1\'' })
                         ]
                     }),
                     new Part({
                         name: '3 ROUNDS FOR QUALITY', activities: [
                             new Activity({ name: '20 PUSH UPS', reps: 20 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' }),
+                            new Activity({ name: 'rest 2\'', time: '2\'' }),
                             new Activity({ name: '20 DB LUNGES', reps: 20 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' }),
+                            new Activity({ name: 'rest 2\'', time: '2\'' }),
                             new Activity({ name: '20 DIPS', reps: 20 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' })
+                            new Activity({ name: 'rest 2\'', time: '2\'' })
                         ]
                     })
                 ]
@@ -78,7 +78,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                             new Activity({ name: '10 ROUNDS FOR TIME', reps: 10 }),
                             new Activity({ name: '5 DUAL DB PUSH PRESS', reps: 5 }),
                             new Activity({ name: '25 DOUBLE UNDERS', reps: 25 }),
-                            new Activity({ name: 'REST 5\'', time: '5\'' })
+                            new Activity({ name: 'rest 5\'', time: '5\'' })
                         ]
                     }),
                     new Part({
@@ -108,17 +108,17 @@ mongoose.connect('mongodb://localhost:27017/project')
                         name: '2 ROUNDS FOR QUALITY', activities: [
                             new Activity({ name: '6 DEFICIT HSPU', reps: 6 }),
                             new Activity({ name: '12 REVERSE LUNGES', reps: 12 }),
-                            new Activity({ name: 'REST 1\'', time: '1\'' })
+                            new Activity({ name: 'rest 1\'', time: '1\'' })
                         ]
                     }),
                     new Part({
                         name: '3 ROUNDS FOR QUALITY', activities: [
                             new Activity({ name: '10 DB CURL BICEPS', reps: 10 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' }),
+                            new Activity({ name: 'rest 2\'', time: '2\'' }),
                             new Activity({ name: '10 SUMO DEADLIFT', reps: 10 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' }),
+                            new Activity({ name: 'rest 2\'', time: '2\'' }),
                             new Activity({ name: '6 DB PUSH PRESS', reps: 6 }),
-                            new Activity({ name: 'REST 2\'', time: '2\'' })
+                            new Activity({ name: 'rest 2\'', time: '2\'' })
                         ]
                     })
                 ]
@@ -169,7 +169,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                     new Part({
                         name: '3 ROUNDS', activities: [
                             new Activity({ name: '8 FRONT SQUAT – 60% RM', reps: 8 }),
-                            new Activity({ name: 'REST 1\' EACH ROUND', time: '1\'' }),
+                            new Activity({ name: 'rest 1\' each round', time: '1\'' }),
                         ]
                     }),
                     new Part({
@@ -177,7 +177,7 @@ mongoose.connect('mongodb://localhost:27017/project')
                             new Activity({ name: '5 STRICT PULL-UPS', reps: 5 }),
                             new Activity({ name: '12 DB BENCH PRESS', reps: 12 }),
                             new Activity({ name: '6 PISTOLS (3 EACH LEG)', reps: 6 }),
-                            new Activity({ name: 'REST 1\' EACH ROUND', time: '1\'' }),
+                            new Activity({ name: 'rest 1\' each round', time: '1\'' }),
                         ]
                     })
                 ]

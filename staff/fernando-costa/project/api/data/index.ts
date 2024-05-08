@@ -8,7 +8,7 @@ type UserType = {
     password: string
 }
 
-const user = new Schema ({
+const user = new Schema<UserType> ({
 
     name: {
         type: String,
@@ -35,7 +35,7 @@ type ActivityType = {
     time?: number
 }
 
-const activity = new Schema ({
+const activity = new Schema<ActivityType> ({
     name: {
         type: String
     },
@@ -53,7 +53,7 @@ const activity = new Schema ({
     },
 
     time: {
-        type: String
+        type: Number
     }
 })
 
@@ -64,7 +64,7 @@ type PartType = {
     activities: ActivityType[]
 }
 
-const part = new Schema ({
+const part = new Schema<PartType> ({
     name: {
         type: String
     },
@@ -84,7 +84,7 @@ type WodType = {
     parts: PartType[]
 }
 
-const wod = new Schema ({
+const wod = new Schema<WodType> ({
     name: {
         type: String,
     },

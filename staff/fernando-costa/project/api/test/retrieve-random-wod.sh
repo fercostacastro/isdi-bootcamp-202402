@@ -1,1 +1,1 @@
-curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM4Y2M1YTcyNzlkMjIwNWY1MzBkY2EiLCJpYXQiOjE3MTQ5OTkxNjksImV4cCI6MTcxNTAwMjc2OX0.0j9Gm4HMCUPkgVBqbt5xH4opc7imU7QPCg8-Sx5Mg8A" http://localhost:8585/wods/strength/random -v
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjM4Y2M1YTcyNzlkMjIwNWY1MzBkY2EiLCJpYXQiOjE3MTUxNTMyOTQsImV4cCI6MTcxNTE1Njg5NH0.n_2RIZgnPp90AIX4yW0lGuqzkPQzP9JcCVexg2GG0Oo" http://localhost:8585/wods/strength/random -v

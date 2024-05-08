@@ -29,7 +29,7 @@ describe('retrieveUser', () => {
 
     )
 
-    it('does no retrieve by non-existing user', () =>
+    it('does not retrieve by non-existing user', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'Pepito Grillo', email: 'pepito@grillo.com', password: '123qwe123' }))
             .then(user =>
@@ -42,7 +42,7 @@ describe('retrieveUser', () => {
             )
     )
 
-    it('does no retrieve a non-existing target user', () =>
+    it('does not retrieve a non-existing target user', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123' }))
             .then(user =>
@@ -68,7 +68,7 @@ describe('retrieveUser', () => {
             )
     )
 
-    it('does no retrieve an existing user with no valid ObjectId', () =>
+    it('does not retrieve an existing user with no valid ObjectId', () =>
         User.deleteMany()
             .then(() => User.create({ name: 'Fernando Costa', email: 'fer@costa.com', password: '123qwe123', ObjectId: '662f6169a154d9d504328350' }))
             .then(user =>

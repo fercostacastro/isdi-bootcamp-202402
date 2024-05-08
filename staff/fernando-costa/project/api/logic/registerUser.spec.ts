@@ -57,6 +57,7 @@ describe('registerUser', () => {
         let errorThrown
 
         try {
+            // @ts-ignore
             logic.registerUser('', 'fer@costa.com', '123qwe123')
         } catch (error) {
             errorThrown = error
@@ -68,26 +69,28 @@ describe('registerUser', () => {
 
     it('fails on empty email', () => {
         let errorThrown
-
+    
         try {
-            logic.registerUser('Fernando Costa', '', '123qwe123')
+            // @ts-ignore
+            logic.registerUser('', '123qwe123')
         } catch (error) {
             errorThrown = error
         }
-
+    
         expect(errorThrown).to.be.instanceOf(Error)
         expect(errorThrown.message).to.equal('email >< is empty or blank')
     })
-
+    
     it('fails on empty password', () => {
         let errorThrown
-
+    
         try {
-            logic.registerUser('Fernando Costa', 'fer@costa.com', '')
+            // @ts-ignore
+            logic.registerUser('fer@costa.com', '')
         } catch (error) {
             errorThrown = error
         }
-
+    
         expect(errorThrown).to.be.instanceOf(Error)
         expect(errorThrown.message).to.equal('password >< is empty or blank')
     })

@@ -15,8 +15,6 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
         const email = form.email.value
         const password = form.password.value
 
-        logger.debug('Login -> handleSubmit', email, password)
-
         try {
             logic.loginUser(email, password)
                 .then(() => {
@@ -35,8 +33,6 @@ function Login({ onUserLoggedIn, onRegisterClick }) {
 
         onRegisterClick()
     }
-
-    logger.debug('Login -> render')
 
     return (
         <main className="bg-white text-black h-screen flex flex-col items-center justify-center">

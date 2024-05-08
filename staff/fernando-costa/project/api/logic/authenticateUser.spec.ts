@@ -48,6 +48,16 @@ describe('authenticateUser', () => {
             })
     )
 
+    it('fails on non-existing user', () =>
+        User.deleteMany()
+            .then(() => User.create({ name: 'Cala Baza', email: 'cala@baza.com', password: '123qwe123' }))
+            .then(() => logic.authenticateUser('cala@baza.com', '123qwe123'))
+            .catch(error => {
+                expect(error).to.be.instanceOf(NotFoundError)
+                expect(error.message).to.equal('user not found')
+            })
+    )
+
 
     after(() => mongoose.disconnect())
 })

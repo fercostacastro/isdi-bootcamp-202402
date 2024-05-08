@@ -51,9 +51,21 @@ const Home = ({ onUserLoggedOut }) => {
         setWod(null)
     }
 
-    logger.debug('Home -> render')
+    const handleBenchmarkCategoryClick = () => {
+        selectCategory('benchmarks')
+    }
 
-    console.log(wod)
+    const handleNormalCategoryClick = () => {
+        selectCategory('normal')
+    }
+
+    const handleStrengthCategoryClick = () => {
+        selectCategory('strength')
+    }
+
+    const handleEnduranceCategoryClick = () => {
+        selectCategory('endurance')
+    }
 
     return (
         <>
@@ -68,7 +80,7 @@ const Home = ({ onUserLoggedOut }) => {
                                 <div className="inline-block animate-spin text-[#2C305D]">
                                     &#9881;
                                 </div>
-                                <h1 className="font-bold">
+                                <h1 className="font-bold ml-1">
                                     Hello, {user.name}!
                                 </h1>
                             </div>
@@ -76,10 +88,10 @@ const Home = ({ onUserLoggedOut }) => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 mt-12">
-                        <button id="benchmarks-button" onClick={() => selectCategory('benchmarks')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Benchmarks</button>
-                        <button id="normal-wod-button" onClick={() => selectCategory('normal')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Normal</button>
-                        <button id="strength-button" onClick={() => selectCategory('strength')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Strength</button>
-                        <button id="endurance-button" onClick={() => selectCategory('endurance')} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Endurance</button>
+                        <button id="benchmarks-button" onClick={handleBenchmarkCategoryClick} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Benchmarks</button>
+                        <button id="normal-wod-button" onClick={handleNormalCategoryClick} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Normal</button>
+                        <button id="strength-button" onClick={handleStrengthCategoryClick} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Strength</button>
+                        <button id="endurance-button" onClick={handleEnduranceCategoryClick} className="bg-[#DCD6E4] text-black font-bold py-2 px-4 rounded">Endurance</button>
                     </div>
 
                     <div className="text-center mt-10"></div>
@@ -89,12 +101,13 @@ const Home = ({ onUserLoggedOut }) => {
             <article className="bg-white">
                 {wod && (
                     <div className="pt-4 pl-5">
-                        <h2>{wod.category.toUpperCase()}</h2>
+                        <h2 className="font-semibold">{wod.category.toUpperCase()}</h2>
                         <p>{wod.name?.toUpperCase()}</p>
                         <br></br>
                         <ul>
                             {wod.parts.map((part) => (
                                 <li key={part.id}>
+                                    <br></br>
                                     <h3>{part.name}</h3>
                                     <p>Reps: {part.reps}</p>
                                     <ul>

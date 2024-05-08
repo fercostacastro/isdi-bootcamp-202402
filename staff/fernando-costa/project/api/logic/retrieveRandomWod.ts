@@ -53,6 +53,7 @@ const retrieveRandomWod = (userId: string, category: any): Promise<WodType> => {
             wod2.parts = wod.parts.map(part => {
                 const part2 = {} as PartType
 
+                // @ts-ignore
                 part2.id = part._id.toString()
                 part2.name = part.name
                 part2.reps = part.reps
@@ -60,6 +61,7 @@ const retrieveRandomWod = (userId: string, category: any): Promise<WodType> => {
                 part2.activities = part.activities.map(activity => {
                     const activity2 = {} as ActivityType
 
+                    // @ts-ignore
                     activity2.id = activity._id.toString()
                     activity2.name = activity.name
                     activity2.femaleWeight = activity.femaleWeight
