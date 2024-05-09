@@ -25,6 +25,7 @@ function registerUser(name: string, email: string, password: string): Promise<vo
                 .catch(error => { throw new SystemError(error.message) })
                 .then(user => { })
         })
+    
 }
 
 export default registerUser
